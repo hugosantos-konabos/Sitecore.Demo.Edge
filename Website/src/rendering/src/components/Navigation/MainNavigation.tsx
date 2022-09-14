@@ -94,7 +94,7 @@ const MainNavigation = (props: MainNavigationProps): JSX.Element => {
         </div>
       </div>
       <div className="global-searchbox">
-        <input type="text" id="global-searchbox" name="global-searchbox" value="Search here">
+        <input type="text" id="global-searchbox" name="global-searchbox" value="Search here" />
       </div>
     </nav>
   );
