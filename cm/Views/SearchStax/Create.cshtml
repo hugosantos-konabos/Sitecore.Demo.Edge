@@ -1,0 +1,193 @@
+﻿@using SearchStax.Feature.Installation.Extensions
+@model SearchStax.Feature.Installation.Models.CreateSearchIndexModel
+
+@{
+    Layout = "~/Views/SearchStax/_ConfigurationLayout.cshtml";
+}
+
+<div class="container">
+    <header class="row justify-content-between">
+        <div class="logo"><a href="#"><img src="/Content/SearchStax/images/logo.svg"></a></div>
+        <div class="tagline">Site Search for Sitecore</div>
+    </header><!-- header -->
+
+    <div class="section-index">
+        <div class="site-head">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Sites</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Index Properties</li>
+                </ol>
+            </nav>
+
+            <h1>Index</h1>
+            <p>Configure Site Search for Sitecore.</p>
+        </div><!-- site-head -->
+
+        @using (Html.BeginForm("Create", "SearchStax", FormMethod.Post, new { id = "createIndexForm" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false, "", new { @class = "text-error" })
+
+            <input type="hidden" name="SearchAppId" value="@Model.SearchAppId" />
+            <input type="hidden" name="SearchAppUsername" value="@Model.SearchAppUsername" />
+            <input type="hidden" name="SearchAppPassword" value="@Model.SearchAppPassword" />
+            <input type="hidden" name="Account" value="@Model.Account" />
+            <input type="hidden" name="Token" value="@Model.Token" />
+
+            <div class="form-group">
+                <label for="solr-core-name">Search App Name *</label>
+                <input type="text" class="form-control" id="search-app-name" name="SearchAppName" value="@Model.SearchAppName" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="root-item">Root Items *</label>
+                <div id="add-crawler-container">
+                    <div class="add-crawler-wrapper">
+                        <input type="text" class="form-control crawler-root-input" name="RootItems[0]">
+                        <button type="button" class="btn btn-dark js-add-crawler">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="solr-password">Read-Only Solr Password *</label>
+                <input type="text" class="form-control" id="solr-password" name="SolrPassword">
+            </div>
+            <div class="form-group">
+                <label for="admin-solr-password">Admin Solr Password *</label>
+                <input type="text" class="form-control" id="admin-solr-password" name="AdminSolrPassword">
+            </div>
+            <div class="form-group">
+                <label for="hosted-search-page-password">Hosted Search Page Password</label>
+                <input type="text" class="form-control" id="hosted-search-page-password" name="HostedSearchPagePassword">
+            </div>
+
+            <div class="d-flex justify-content-end button-groups">
+                <button type="button" class="btn btn-dark js-cancel">Cancel</button>
+                <button type="submit" class="btn btn-secondary js-save">Save</button>
+            </div>
+        }
+    </div><!-- Sectin-index -->
+
+    <footer>Copyrights &copy;SearchStax Inc. 2014-@DateTime.Now.Year. All Rights Reserved.</footer>
+</div><!-- container -->
+
+<div class="modal" id="create-modal">
+    <div class="modal-header">
+        <h5 class="modal-title" id="createModal">Create Index</h5>
+        <button type="button" class="close js-dismiss-modal">
+            <i class="icon-close-modal"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>This will cause Sitecore to be restarted. Do you want to proceed?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary js-confirm-create">Confirm</button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+    .text-error {
+        color: red;
+    }
+
+    .add-crawler-wrapper {
+        width: 100%;
+    }
+
+    .crawler-root-input {
+        width: 90%;
+        display: inline-block;
+    }
+
+    @@media (max-width:992px) {
+        .crawler-root-input {
+            width: 88%;
+        }
+    }
+
+    @@media (max-width:768px) {
+        .crawler-root-input {
+            width: 83%;
+        }
+    }
+
+    @@media (max-width:576px) {
+        .crawler-root-input {
+            width: 81%;
+        }
+    }
+
+    .js-add-crawler {
+        width: 80px;
+        float: right;
+    }
+
+    .js-remove-crawler {
+        width: 80px;
+        float: right;
+    }
+</style>
+
+<script>
+    function close_modal() {
+        $('#create-modal').hide();
+        $('body').toggleClass('modal-open');
+        $('.modal-backdrop').hide();
+    }
+
+    $('.js-dismiss-modal').click(function () {
+        close_modal();
+    });
+
+    $('.js-confirm-create').click(function () {
+        $('#createIndexForm').submit();
+        close_modal();
+    });
+
+    $('.js-cancel').click(function () {
+        window.location.href = "/SearchStax/Configuration";
+    });
+
+    $('.js-save').click(function (e) {
+        e.preventDefault();
+
+        $('#create-modal').show();
+        $('.modal-backdrop').show();
+    });
+
+    $('.js-add-crawler').click(function () {
+        hideRemoveButtons();
+        const index = $('.add-crawler-wrapper').length;
+        const div = `
+            <div class='add-crawler-wrapper' data-crawler-index='${index}'>
+                <input type='text' class='form-control crawler-root-input' name='RootItems[${index}]'>
+                <button type='button' class='btn btn-dark js-remove-crawler' data-crawler-index='${index}' onclick='removeCrawler(${index})'>-</button>
+            </div>
+        `;
+        $('#add-crawler-container').append(div);
+    });
+
+    function hideRemoveButtons() {
+        $(".js-remove-crawler").hide();
+    }
+
+    function showRemoveButton(index) {
+        const btn = $(".js-remove-crawler[data-crawler-index='" + index + "']");
+        btn.show();
+    }
+
+    function removeCrawler(index) {
+        $(".add-crawler-wrapper[data-crawler-index='" + index + "']").remove();
+        showRemoveButton(index - 1);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        hideRemoveButtons();
+        const index = $('.add-crawler-wrapper').length - 1;
+        showRemoveButton(index);
+    }, false);
+</script>

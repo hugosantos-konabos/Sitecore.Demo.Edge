@@ -1,0 +1,487 @@
+﻿@using SearchStax.Feature.Installation.Extensions;
+@using System.Linq;
+
+@model SearchStax.Feature.Installation.Models.SearchStaxConfigurationsModel
+
+@{
+    Layout = "~/Views/SearchStax/_ConfigurationLayout.cshtml";
+}
+
+
+<div class="container">
+    <header class="row justify-content-between">
+        <div class="logo"><a href="#"><img src="/Content/SearchStax/images/logo.svg"></a></div>
+        <div class="tagline">Site Search for Sitecore</div>
+    </header><!-- header -->
+
+    <div class="section-sites">
+
+        <div class="site-head">
+            <h1>Sites</h1>
+            <p>In this page, you can create an index for your Sitecore site(s).</p>
+        </div><!-- site-head -->
+
+        <div class="row select-core-wrapper">
+            <div class="column">
+                <div class="form-group">
+                    <label>SearchStudio Username</label>
+                    <input type="text" class="form-control" id="searchstudio-username" name="SearchStudioUsername" value="@Model.SearchStudioUsername">
+                </div>
+
+                <div class="form-group">
+                    <label>SearchStudio Password</label>
+                    <input type="password" class="form-control" id="searchstudio-password" name="SearchStudioPassword" value="@Model.SearchStudioPassword">
+                </div>
+
+                <div>
+                    <input type="button" class="btn btn-secondary js-load-accounts disabled" value="Load Accounts" />
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="form-group">
+                    <label>SearchStudio Account</label>
+                    <select name="SearchStudioAccount" id="searchstudio-account" disabled>
+                        <option value="none">-</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Search Apps</label>
+                    <select name="SearchApp" id="search-app" disabled>
+                        <option value="none">-</option>
+                    </select>
+                </div>
+
+                <div>
+                    <input type="button" class="btn btn-secondary js-create-index disabled" value="Create an Index"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-header">
+            <h3>Indexes</h3>
+            <div class="right">
+                <div class="delete">
+                    <a href="#" class="js-delete"><i class="icon-trash"></i></a>
+                </div>
+                <div class="sync">
+                    <a href="#" class="js-sync"><i class="icon-download" rel="tooltip" title="Sync with SearchStax Theme Editor"></i></a>
+                </div>
+            </div><!-- right -->
+        </div><!-- table-header -->
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="row">
+                    <th class="col-1">
+
+                    </th>
+                    <th class="col-2">INDEX CORE NAME</th>
+                    <th class="col-4"><span>Root Items</span></th>
+                    <th class="col-4 "><span>Endpoint</span></th>
+                    <th class="col-1">
+
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (int i = 0; i < Model.Configs.Count; i++)
+                {
+                    var editUrl = "/SearchStax/Edit?core=" + Model.Configs[i].IndexCoreName;
+                    <tr class="row index-definition" data-index-id="@Model.Configs[i].IndexCoreName" id="row-@i">
+                        <td class="col-1">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input select-index-core" data-index-id="@Model.Configs[i].IndexCoreName" id="select-@i">
+                                <label class="custom-control-label" for="select-@i">&nbsp;</label>
+                            </div>
+                        </td>
+                        <td class="col-2">
+                            @Html.SpanFor(m => Model.Configs[i].IndexCoreName, new { @class = "" })
+                        </td>
+                        <td class="col-4">
+                            <ul>
+                                @foreach (var rootItem in Model.Configs[i].RootItems)
+                                {
+                                    <li>@rootItem</li>
+                                }
+                            </ul>
+                        </td>
+                        <td class="col-4">
+                            @Html.SpanFor(m => Model.Configs[i].SearchEndpoint, new { @class = "" })
+                        </td>
+                        <td class="col-1">
+                            <div class="edit">
+                                <a href="@editUrl" data class="js-edit"><i class="icon-gear"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="no-data d-none">
+            <h2>No index found. Click on <span>‘create an index’ to get started.</span></h2>
+        </div><!-- remove d-none class to show No Index Found message -->
+
+        <div class="table-footer">
+
+        </div><!-- table-footer -->
+    </div><!-- section-sites -->
+
+    <footer>Copyrights &copy;SearchStax Inc. 2014-@DateTime.Now.Year. All Rights Reserved.</footer>
+</div><!-- container -->
+
+<div class="modal" id="delete-modal">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+        <button type="button" class="close js-dismiss-modal">
+            <i class="icon-close-modal"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Delete the selected index(es). This will cause Sitecore to be restarted. Do you want to proceed?</p>
+    </div>
+    <div class="modal-footer">
+        @using (Html.BeginForm("DeleteConfigurations", "SearchStax", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="text" id="indexCoreIds" name="indexCoreIds" style="display:none">
+            <button type="submit" class="btn btn-secondary js-confirm-delete">Delete</button>
+        }
+    </div>
+</div>
+
+<div class="modal" id="sync-modal">
+    <div class="modal-header">
+        <h5 class="modal-title" id="syncModal">Sync</h5>
+        <button type="button" class="close js-dismiss-modal">
+            <i class="icon-close-modal"></i>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Sync the selected index(es) with SearchStax Theme Editor.</p>
+    </div>
+    <div class="modal-footer">
+        <input type="text" id="indexCoreIdsForSync" name="indexCoreNames" style="display:none">
+        <button type="button" class="btn btn-secondary js-confirm-sync">Sync</button>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+    .index-definition {
+        word-wrap: break-word;
+    }
+
+    .index-definition ul {
+        padding-left: 0px;
+    }
+
+    .select-core-wrapper {
+        margin-bottom: 60px;
+        border-bottom: 1px solid #C5CED7;
+    }
+
+    .select-core-wrapper select {
+        display: block;
+        width: 100%;
+        height: 45px;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .select-core-wrapper a.disabled {
+        pointer-events: none;
+        cursor: default;
+        background-color: #a4daf7;
+        border-color: #a4daf7;
+    }
+
+    .select-core-wrapper input.disabled {
+        pointer-events: none;
+        cursor: default;
+        background-color: #a4daf7;
+        border-color: #a4daf7;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .table-header .sync {
+        width: 35px;
+        text-align: center;
+    }
+
+    .table-header .sync a {
+        font-size: 18px;
+        color: #6E85A0;
+    }
+</style>
+
+<script>
+
+    $('.js-save').click(function () {
+        $('.section-sites').show();
+        $('.section-index').hide();
+    });
+
+    $('.js-delete').click(function () {
+        var selectedCores = $.map($(".select-index-core:checked"), function (checkbox) {
+            return $(checkbox).attr("data-index-id");
+        });
+
+        var joinedSelectedCores = selectedCores.join(";");
+        $('#indexCoreIds').val(joinedSelectedCores);
+
+        $('#delete-modal').show();
+        $('.modal-backdrop').show();
+    });
+
+    $('.js-sync').click(function () {
+        var selectedCores = $.map($(".select-index-core:checked"), function (checkbox) {
+            return $(checkbox).attr("data-index-id");
+        });
+        var joinedSelectedCores = selectedCores.join(";");
+
+        $('#indexCoreIdsForSync').val(joinedSelectedCores);
+        $('#tokenForSync').val(oauthToken);
+
+        $('#sync-modal').show();
+        $('.modal-backdrop').show();
+    });
+
+    function close_modal() {
+        $('#delete-modal').hide();
+        $('#sync-modal').hide();
+        $('body').toggleClass('modal-open');
+        $('.modal-backdrop').hide();
+    }
+
+    $('.js-confirm-delete').click(function () {
+        var selectedCoreRowIds = $.map($("tr.row[data-index-id]"), function (row) {
+            var selectedInput = $(row).find(".select-index-core:checked");
+            if (selectedInput.length) {
+                return $(row).attr("id");
+            }
+        });
+
+        selectedCoreRowIds.forEach(function (removedRowId) {
+            document.getElementById(removedRowId).remove();
+        });
+
+        close_modal();
+    });
+
+    $('.js-confirm-sync').click(function () {
+        const indexCoreIdsForSync = $('#indexCoreIdsForSync').val();
+        const url = '/api/sitecore/SearchStax/Sync';
+
+        if (indexCoreIdsForSync !== '') {
+            $.ajax({
+                dataType: "json",
+                contentType: 'application/json',
+                type: 'POST',
+                url: url,
+                data: JSON.stringify({IndexCoreNames: indexCoreIdsForSync,Token: oauthToken}),
+            });
+        }
+
+        close_modal();
+    });
+
+    $('.js-dismiss-modal').click(function () {
+        close_modal();
+    });
+
+    $('#searchstudio-password').keyup(function () {
+        updateLoadAccountsButtonState();
+    });
+
+    $('#searchstudio-username').keyup(function () {
+        updateLoadAccountsButtonState();
+    });
+
+    let oauthToken;
+
+    function loadToken(username, password) {
+
+        if (oauthToken !== undefined) {
+            return oauthToken;
+        }
+        else {
+            const url = '/api/sitecore/SearchStax/GetToken?username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password);
+
+            if (username !== '' && password !== '') {
+                $.ajax({
+                    dataType: "json",
+                    processData: false,
+                    contentType: 'application/json',
+                    complete: function (data) {
+                        const response = JSON.parse(data.responseJSON);
+                        oauthToken = response.token;
+                    },
+                    error: function () {
+                        console.log("ERROR: Can't get SearchStudio token.");
+                    },
+                    type: 'GET',
+                    url: url,
+                    async: false
+                });
+            }
+        }
+    }
+
+    function loadAccounts() {
+        const username = $('#searchstudio-username').val();
+        const password = $('#searchstudio-password').val();
+
+        if (username !== '' && password !== '') {
+            loadToken(username, password);
+
+            const url = '/api/sitecore/SearchStax/ListAccounts?token=' + oauthToken;
+            $(".js-load-accounts").addClass("disabled");
+            $(".js-load-accounts").val("       Loading...     ");
+
+            $.ajax({
+                dataType: "json",
+                processData: false,
+                contentType: 'application/json',
+                complete: function (data) {
+                    const response = JSON.parse(data.responseJSON);
+
+                    $('#searchstudio-account').attr("disabled");
+                    $('#searchstudio-account').empty();
+
+                    if (response.results == undefined || response.results.length == 0) {
+                        $('#searchstudio-account').append("<option value='none'>-</option>");
+                        alert("Can't connect to SearchStax. Please provide valid credentials.")
+                    } else {
+                        response.results.forEach(result => {
+                            const accountName = result?.name;
+                            appendAccount(accountName);
+                        });
+
+                        loadSearchApps();
+                    }
+
+                    $('#searchstudio-account').removeAttr("disabled");
+                    $(".js-load-accounts").removeClass("disabled");
+                    $(".js-load-accounts").val("LOAD ACCOUNTS");
+                },
+                error: function () {
+                    console.log("ERROR: Can't get the SearchStudio token from the server.");
+                },
+                type: 'GET',
+                url: url,
+                async: true
+            });
+        }
+    }
+
+    function appendAccount(accountName) {
+        $('#searchstudio-account').append("<option value='" + accountName + "'>" + accountName + "</option>");
+    }
+
+    function loadSearchApps() {
+        var account = $('#searchstudio-account').find(":selected").text();
+        const url = '/api/sitecore/SearchStax/ListSearchApps?token=' + oauthToken + '&account=' + account;
+
+        $.ajax({
+            dataType: "json",
+            processData: false,
+            contentType: 'application/json',
+            complete: function (data) {
+                const response = JSON.parse(data.responseJSON);
+
+                $('#search-app').attr("disabled");
+                $('#search-app').empty();
+
+                $('.js-create-index').addClass("disabled");
+
+                if (response.length == 0) {
+                    $('#search-app').append("<option value='none'>-</option>");
+                } else {
+                    response.forEach(result => {
+                        const searchAppName = result?.name;
+                        const id = result?.id;
+
+                        appendSearchApp(searchAppName, id);
+                    });
+
+                    $('.js-create-index').removeClass("disabled");
+                }
+
+                $('#search-app').removeAttr("disabled");
+            },
+            error: function () {
+                console.log("ERROR: Can't get SearchStudio Search App.");
+            },
+            type: 'GET',
+            url: url,
+            async: false
+        });
+
+    }
+
+    function appendSearchApp(searchAppName, id) {
+        $('#search-app').append("<option value='" + id + "'>" + searchAppName + "</option>");
+    }
+
+    $('#searchstudio-account').on('change', function () {
+        loadSearchApps();
+    });
+
+    $('.js-load-accounts').click(function () {
+        loadAccounts();
+    });
+
+    function updateLoadAccountsButtonState() {
+        const username = $('#searchstudio-username').val();
+        const password = $('#searchstudio-password').val();
+
+        if (username !== '' && password !== '') {
+            $('.js-load-accounts').removeClass("disabled");
+        } else {
+            $('.js-load-accounts').addClass("disabled");
+        }
+    }
+
+    $('.js-create-index').click(function () {
+        const searchAppName = $('#search-app').find(":selected").text();
+        const searchAppId = $('#search-app').find(":selected").val();
+
+        const account = $('#searchstudio-account').find(":selected").val();
+
+        window.location.href = "/SearchStax/Create?searchAppName=" + searchAppName + "&searchAppId=" + searchAppId + "&account=" + account + "&token=" + oauthToken;
+    });
+
+    $(window).on('load', function () {
+        loadAccounts();
+    });
+
+    $(document).ready(function () {
+        $("[rel=tooltip]").tooltip({ placement: 'right' });
+    });
+
+</script>

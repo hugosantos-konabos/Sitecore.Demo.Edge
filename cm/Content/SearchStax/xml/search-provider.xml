@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<index id="" type="SearchStax.Feature.Connector.Provider.SearchStaxSearchIndex, SearchStax.Feature.Connector"  xmlns:patch="http://www.sitecore.net/xmlconfig/">
+  <param desc="name">$(id)</param>
+  <!-- This Core must be configured during installation -->
+  <param desc="core"></param>
+  <param ref="contentSearch/indexConfigurations/databasePropertyStore" desc="propertyStore" param1="$(id)"/>
+  <configuration ref="contentSearch/indexConfigurations/defaultSolrIndexConfiguration">
+    <documentOptions ref="contentSearch/indexConfigurations/defaultSolrIndexConfiguration/documentOptions">
+      <exclude hint="list:AddExcludedTemplate">
+        <SearchStaxPageTemplateId>{A31BD8D3-CDE3-4375-A7EF-3F9661A491D3}</SearchStaxPageTemplateId>
+        <MediaFolder>{FE5DD826-48C6-436D-B87A-7C4210C7413B}</MediaFolder>
+      </exclude>
+      <fields hint="raw:AddComputedIndexField">
+        <field fieldName="RenderedContent" returnType="text">SearchStax.Feature.Connector.ComputedFields.RenderedContent,SearchStax.Feature.Connector</field>
+        <field fieldName="ResultURL" returnType="string">SearchStax.Feature.Connector.ComputedFields.ResultURL,SearchStax.Feature.Connector</field>
+        <field fieldName="ResultTitle" returnType="text">SearchStax.Feature.Connector.ComputedFields.ResultTitle,SearchStax.Feature.Connector</field>
+      </fields>
+      <include hint="list:AddIncludedField">
+        <fieldId>{558F9307-EBAF-480D-88B5-DFE9E63A66DE}</fieldId>
+      </include>
+    </documentOptions>
+    <indexFieldStorageValueFormatter type="Sitecore.ContentSearch.SolrProvider.Converters.SolrIndexFieldStorageValueFormatter, Sitecore.ContentSearch.SolrProvider">
+      <converters hint="raw:AddConverter">
+        <converter typeConverter="SearchStax.Feature.Connector.Converters.SearchStaxIndexFieldSitecoreItemUniqueIDValueConverter, SearchStax.Feature.Connector">
+          <patch:delete />
+        </converter>
+        <converter typeConverter="SearchStax.Feature.Connector.Converters.SearchStaxIndexFieldSitecoreItemUniqueIDValueConverter, SearchStax.Feature.Connector"
+                   handlesType="Sitecore.ContentSearch.SitecoreItemUniqueId, Sitecore.ContentSearch">
+          <param type="SearchStax.Feature.Connector.Converters.SearchStaxIndexFieldItemUriValueConverter, SearchStax.Feature.Connector"/>
+        </converter>
+      </converters>
+    </indexFieldStorageValueFormatter>
+  </configuration>
+  <strategies hint="list:AddStrategy">
+    <strategy ref="contentSearch/indexConfigurations/indexUpdateStrategies/onPublishEndAsync"/>
+  </strategies>
+  <locations hint="list:AddCrawler">
+    <crawler type="Sitecore.ContentSearch.SitecoreItemCrawler, Sitecore.ContentSearch">
+      <Database></Database>
+      <Root></Root>
+    </crawler>
+  </locations>
+  <enableItemLanguageFallback>false</enableItemLanguageFallback>
+  <enableFieldLanguageFallback>false</enableFieldLanguageFallback>
+</index>

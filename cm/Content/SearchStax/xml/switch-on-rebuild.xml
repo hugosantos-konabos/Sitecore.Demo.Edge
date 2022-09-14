@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<index id="" xmlns:patch="http://www.sitecore.net/xmlconfig/" >
+  <patch:attribute name="type" value="SearchStax.Feature.Connector.Provider.SwitchOnRebuildSearchStaxCloudSearchIndex, SearchStax.Feature.Connector" />
+  <param desc="core">
+    <patch:delete />
+  </param>
+  <param desc="rebuildcore">
+    <patch:delete />
+  </param>
+  <param patch:after="*[@desc='name']" desc="mainalias">$(id)MainAlias</param>
+  <param patch:after="*[@desc='mainalias']" desc="rebuildalias">$(id)RebuildAlias</param>
+  <param patch:after="*[@desc='rebuildalias']" desc="collection">$(id)</param>
+  <param patch:after="*[@desc='collection']" desc="rebuildcollection">$(id)_rebuild</param>
+</index>

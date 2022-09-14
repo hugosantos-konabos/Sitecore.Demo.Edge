@@ -1,0 +1,12 @@
+﻿@model SearchStax.Feature.SearchPage.Models.SearchPageModel
+
+@{
+    var additionalArgs = @"hl.fragsize=200&fq=_language:\""" + Model.Language + @"\""";
+
+    if (!string.IsNullOrEmpty(Model.SearchModel))
+    {
+        additionalArgs += "&model=" + Model.SearchModel;
+    }
+
+    var resultsFieldMappingJson = Model.GetFieldsMappingJson();
+}

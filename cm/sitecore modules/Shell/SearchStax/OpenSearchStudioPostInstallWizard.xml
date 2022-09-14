@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<control xmlns="http://schemas.sitecore.net/Visual-Studio-Intellisense">
+	<SearchStaxPostInstallWizard>
+		<Stylesheet>
+			.scfContent {
+				padding-top : 15px;
+			}
+			.scfFieldScope{
+				width:100%; margin:7px;
+			}
+			.scfFieldLabel {
+				width:40%;
+			}
+			.scfFieldSelect {
+				width:58%;
+				position:absolute;
+				right:0;
+				margin-right:20px;
+			}
+			.scfButton {
+				background-color: #33475a;
+				color: #fff !important;
+				padding: 10px 37px;
+				margin: 0 auto;
+				font-weight: 400;
+				border: 1px solid transparent;
+				border-radius: 50px;
+				cursor: pointer;
+				justify-content: center;
+			}
+		</Stylesheet>
+		<FormDialog ID="Dialog" Icon="Software/32x32/step_new.png" Text="SearchStax for Sitecore - Installation Wizard">
+			<CodeBeside Type="SearchStax.Feature.Installation.Controls.SearchStaxWizardDialogForm,SearchStax.Feature.Installation"/>
+			<Border Class="scfContent" Width="100%"  Align="left" Style="overflow:none;">
+				<Literal Text="The SearchStax for Sitecore package is now installed!" Class="scfFieldLabel" />
+			</Border>
+			<Border Class="scfContent" Width="100%"  Align="left" Style="overflow:none;">
+				<Literal Text="Please use the button bellow to finish the configuration:" Class="scfFieldLabel" />
+			</Border>
+			<Border Class="scfContent" Width="100%"  Align="left" Style="overflow:none;">
+				<a href="/searchstax/configuration" target="_blank" Class="scfButton">Configure SearchStax for Sitecore Package</a>
+			</Border>
+		</FormDialog>
+	</SearchStaxPostInstallWizard>
+</control>
