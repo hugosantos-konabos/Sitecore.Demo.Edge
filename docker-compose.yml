@@ -45,17 +45,17 @@ services:
     # DEMO TEAM CUSTOMIZATION - Removed default volume
     environment:
       SOLR_MODE: solrcloud
-    healthcheck:
-      test: ["CMD", "powershell", "-command", "try { $$statusCode = (iwr http://solr:8983/solr/admin/cores?action=STATUS -UseBasicParsing).StatusCode; if ($$statusCode -eq 200) { exit 0 } else { exit 1} } catch { exit 1 }"]
+    # healthcheck:
+      # test: ["CMD", "powershell", "-command", "try { $$statusCode = (iwr http://solr:8983/solr/admin/cores?action=STATUS -UseBasicParsing).StatusCode; if ($$statusCode -eq 200) { exit 0 } else { exit 1} } catch { exit 1 }"]
   solr-init:
     isolation: ${ISOLATION}
     image: ${SITECORE_DOCKER_REGISTRY}sxp/sitecore-xm1-solr-init:${SITECORE_VERSION}-${WINDOWSSERVERCORE_VERSION}
     environment:
       SITECORE_SOLR_CONNECTION_STRING: http://solr:8983/solr
       SOLR_CORE_PREFIX_NAME: ${SOLR_CORE_PREFIX_NAME}
-    depends_on:
-      solr:
-        condition: service_healthy
+    # depends_on:
+     #  solr:
+      #   condition: service_healthy
   id:
     isolation: ${ISOLATION}
     image: ${SITECORE_DOCKER_REGISTRY}sxp/sitecore-id6:${SITECORE_VERSION}-${WINDOWSSERVERCORE_VERSION}
