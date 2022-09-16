@@ -1,5 +1,5 @@
 const SearchPage = (): JSX.Element => (
-  <div>SearchStax for Sitecore Headless - Goes Here!</div>
+  <div>This component requires a datasource. Please configure one.</div>
 );
 
 export default SearchPage;
