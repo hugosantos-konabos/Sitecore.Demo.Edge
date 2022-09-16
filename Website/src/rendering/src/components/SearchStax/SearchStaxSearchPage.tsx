@@ -1,5 +1,5 @@
-const RequireDatasource = (): JSX.Element => (
-  <div>This component requires a datasource. Please configure one.</div>
+const SearchPage = (): JSX.Element => (
+  <div>SearchStax for Sitecore Headless - Goes Here!</div>
 );
 
-export default RequireDatasource;
+export default SearchPage;
