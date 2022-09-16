@@ -1,5 +1,7 @@
-  const SearchStaxSearchPage = (): JSX.Element => (
-    <div>SearchStax Search Page goes here.</div>
-  );
-  
-  export default SearchStaxSearchPage;
+import React from 'react';
+
+const SearchStaxSearchPage = (): JSX.Element => (
+  <div>SearchStax Search Page goes here.</div>
+);
+
+export default SearchStaxSearchPage;
