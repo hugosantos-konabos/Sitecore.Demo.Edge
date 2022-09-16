@@ -1,7 +1,5 @@
-import React from 'react';
-
-const SearchStaxSearchPage = (): JSX.Element => (
-  <div>SearchStax Search Page goes here.</div>
+const RequireDatasource = (): JSX.Element => (
+  <div>This component requires a datasource. Please configure one.</div>
 );
 
-export default SearchStaxSearchPage;
+export default RequireDatasource;
