@@ -1,5 +1,5 @@
 const SearchPage = (): JSX.Element => (
-  <div>Searchstax search page.</div>
+  <div>This component requires a datasource.</div>
 );
 
 export default SearchPage;
