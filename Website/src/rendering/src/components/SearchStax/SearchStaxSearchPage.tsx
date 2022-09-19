@@ -23,7 +23,7 @@ const SearchPage = (): JSX.Element => {
         <div>Symposium Demo!</div>
       </div>
 
-      <div className="input-container">
+      {/* <div className="input-container">
         <div className="sf-header-searchstudio-js mb-5">
           <div>
             <div className="sf-form">
@@ -61,7 +61,80 @@ const SearchPage = (): JSX.Element => {
             </div>
           </div>
         </div>
+      </div> */}
+
+      <div className="app">
+        <div className="search-input-wrapper">
+          <div className="feedback-wrapper">
+            <div id="sf-feedback"></div>
+          </div>
+          <div id="searchInput"></div>
+        </div>
+        <div className="search-results-summary-options-wrapper">
+          <div id="searchResultSummarySection"></div>
+          <div id="searchOptionsSection"></div>
+        </div>
+        <div className="search-results-wrapper">
+          <div className="facet-container-wrapper">
+            <div id="searchFacetSection"></div>
+          </div>
+          <div className="result-container-wrapper">
+            <div id="searchResultsSection"></div>
+            <div id="relatedSearchesSection"></div>
+            <div id="paginationSection"></div>
+          </div>
+        </div>
       </div>
+
+      <Script id="searchStaxCookies">{`
+         function getCookie(name) {
+          let matches = document.cookie.match(new RegExp('(?:^|; )' +
+              name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+      }
+
+      function setCookie(name, value, options = {}) {
+          options = {
+              path: '/',
+              // add other defaults here if necessary
+              ...options,
+          };
+          if (options.expires instanceof Date) {
+              options.expires = options.expires.toUTCString();
+          }
+          let updatedCookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
+          for (let optionKey in options) {
+              updatedCookie += '; ' + optionKey;
+              let optionValue = options[optionKey];
+              if (optionValue !== true) {
+                  updatedCookie += '=' + optionValue;
+              }
+          }
+          document.cookie = updatedCookie;
+      }
+
+      function makeid(length) {
+          var result = '';
+          var characters =
+              'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+          var charactersLength = characters.length;
+          for (var i = 0; i < length; i++) {
+              result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          return result;
+      }
+
+      function getOrSetCookie(name) {
+          let cookieID = getCookie(name);
+          if (cookieID == null) {
+              cookieID = makeid(25);
+              setCookie(name, cookieID, {
+                  secure: true,
+                  'max-age': 3600,
+              });
+          }
+          return cookieID;
+      }`}</Script>
     </div>
   );
 };
