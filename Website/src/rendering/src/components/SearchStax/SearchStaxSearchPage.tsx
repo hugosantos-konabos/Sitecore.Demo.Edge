@@ -11,7 +11,7 @@ const SearchPage = (): JSX.Element => {
         <div>Symposium Demo!</div>
       </div>
 
-      <div className="input-container">
+      {/* <div className="input-container">
         <div className="sf-header-searchstudio-js mb-5">
           <div>
             <div className="sf-form">
@@ -25,7 +25,7 @@ const SearchPage = (): JSX.Element => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
