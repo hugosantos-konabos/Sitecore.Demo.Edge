@@ -1,7 +1,8 @@
 const SearchPage = (): JSX.Element => {
   return (
-    <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
     <div>
+      <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
+
       <div>
         <div>SearchStax for Sitecore</div>
         <div>Symposium Demo!</div>
