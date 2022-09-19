@@ -1,6 +1,9 @@
 const SearchPage = (): JSX.Element => {
   return (
-    <div>SearchStax for Sitecore - Symposium Demo!</div>
+    <div>
+      <div>SearchStax for Sitecore</div>
+      <div>Symposium Demo!</div>
+    </div>
   );
 };
 
