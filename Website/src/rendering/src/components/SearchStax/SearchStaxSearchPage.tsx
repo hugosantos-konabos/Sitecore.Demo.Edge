@@ -18,11 +18,6 @@ const SearchPage = (): JSX.Element => {
           s.parentNode.insertBefore(ms, s);
         })();`}</Script>
 
-      <div>
-        <div>SearchStax for Sitecore</div>
-        <div>Symposium Demo!</div>
-      </div>
-
       {/* <div className="input-container">
         <div className="sf-header-searchstudio-js mb-5">
           <div>
