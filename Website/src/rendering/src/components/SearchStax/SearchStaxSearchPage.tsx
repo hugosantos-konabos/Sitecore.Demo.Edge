@@ -215,7 +215,7 @@ const SearchPage = (): JSX.Element => {
               date: format_date,
             },
             hideUniqueKey: true,
-            searchAdditionalArgs: "hl.fragsize=200&fq=_language:"en"",
+            searchAdditionalArgs: "hl.fragsize=200&fq=_language:\"en\"",
             language: "en",
           },
           searchResults: '#searchResultsSection',
