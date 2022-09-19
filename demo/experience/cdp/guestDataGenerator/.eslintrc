@@ -25,7 +25,7 @@
   "ignorePatterns": [],
   "rules": {
     // enable prettier
-    "prettier/prettier": "error",
+    //"prettier/prettier": "error",
     "no-unused-vars": "error"
   }
 }
