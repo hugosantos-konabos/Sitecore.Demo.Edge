@@ -136,7 +136,7 @@ const SearchPage = (): JSX.Element => {
           return cookieID;
       }`}</Script>
 
-      <Script id="searchStaxCookies">{`
+      <Script type="text/x-template" id="result-template">{`
         <div class="card-searchstudio-js-custom"
           :class="{'card-searchstudio-js-grid-layout': isGridLayout, 'has-thumbnail': thumbnail
           !== ''}">
@@ -166,9 +166,8 @@ const SearchPage = (): JSX.Element => {
           </div>
         </div>`}</Script>
 
-      <Script id="searchStaxCookies">{`
-        <div
-        class="related-searches-container">
+      <Script type="text/x-template" id="customRelatedSearches-template">{`
+        <div class="related-searches-container">
           <div v-if="storeState.relatedSearches.length">
 
             <b>Related searches:</b>
@@ -183,6 +182,71 @@ const SearchPage = (): JSX.Element => {
             </span>
           </div>
         </div>`}</Script>
+
+      <Script id="studioConfig">{`
+        const session = getOrSetCookie('searchcookie');
+
+        function format_date(value) {
+          if (value != null) {
+                  if (typeof value == 'undefined') {
+              return '';
+            }
+            date_value = Date.parse(value);
+            const options = {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            };
+            return new Date(value).toLocaleDateString(undefined, options);
+          }
+          return value;
+        }
+        const studioConfig = {
+          "connector": {
+            "url": "https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820/emselect",
+            "authentication": "YXBwODIwLWFwaTpLb25hYm9zITIz",
+            "apikey": "lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI",
+            "session": session,
+            "fields": {"title":"resulttitle_t","url":"resulturl_s","description":"renderedcontent_t","ribbon":"_templatename","paths":"_fullpath"},
+            "suggester": "https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest",
+            "relatedSearches": "",
+            "searchAPIKey":  "64d9d3225a7f03d96cf01418fe49e3269b8cbb89",
+            "fieldFormatters": {
+              date: format_date,
+            },
+            hideUniqueKey: true,
+            searchAdditionalArgs: "hl.fragsize=200&fq=_language:\"en\"",
+            language: "en",
+          },
+          searchResults: '#searchResultsSection',
+          searchInput: '#searchInput',
+          searchResultSummarySection: '#searchResultSummarySection',
+          facetSection: '#searchFacetSection',
+          searchOptionsSection: '#searchOptionsSection',
+          relatedSearchesSection: '#relatedSearchesSection',
+          hideBranding: false,
+          display: 'multi',
+          facet_pagination: 4,
+          customResultTemplate: '#result-template',
+          customRelatedSearchesTemplate: '#customRelatedSearches-template',
+          paginationSection: '#paginationSection',
+        };`}</Script>
+
+      <Script id="searchstaxWidget">{`
+        (function (w, d, s, o, f) {
+          w['sf-widget'] = o;
+          w[o] =
+              w[o] ||
+              function () {
+                  (w[o].q = w[o].q || []).push(arguments);
+              };
+          js = d.createElement(s);
+          fjs = d.getElementsByTagName(s)[0];
+          js.src = f;
+          js.async = 1;
+          fjs.parentNode.insertBefore(js, fjs);
+      })(window, document, 'script', '_sf', 'https://static.searchstax.com/studio-js/v3/js/studio-feedback.js');
+      _sf('lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI');`}</Script>
     </div>
   );
 };
