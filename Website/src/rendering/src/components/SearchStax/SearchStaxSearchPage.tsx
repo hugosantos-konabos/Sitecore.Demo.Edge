@@ -5,6 +5,18 @@ const SearchPage = (): JSX.Element => {
     <div>
       <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
       <Script src="https://static.searchstax.com/studio-js/v3/js/studio-vendors.js"></Script>
+      <Script src="https://static.searchstax.com/studio-js/v3/js/search-widget.min.js"></Script>
+
+      <Script id="searchStaxAnalytics">{`
+        var _msq = _msq || []; //declare object
+        var analyticsBaseUrl = "https://analytics-us.searchstax.com";
+        (function () {
+          var ms = document.createElement("script");
+          ms.type = "text/javascript";
+          ms.src = "https://static.searchstax.com/studio-js/v3/js/studio-analytics.js";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(ms, s);
+        })();`}</Script>
 
       <div>
         <div>SearchStax for Sitecore</div>
