@@ -135,6 +135,54 @@ const SearchPage = (): JSX.Element => {
           }
           return cookieID;
       }`}</Script>
+
+      <Script id="searchStaxCookies">{`
+        <div class="card-searchstudio-js-custom"
+          :class="{'card-searchstudio-js-grid-layout': isGridLayout, 'has-thumbnail': thumbnail
+          !== ''}">
+          <div class="card-searchstudio-jsClass">
+            <div class="card-searchstudio-js-body p-0">
+              <span class="badge" v-if="ribbon" v-html="ribbon" />
+              <div class="card-searchstudio-js-title" v-if="title">
+                <a class="stretched-link" v-if="url" :href="url" @@click="navigate"
+                    v-html="title" />
+                <span v-else v-html="title" />
+              </div>
+              <span class="card-searchstudio-js-path" v-if="paths" v-html="paths" />
+              <span class="star elevated" v-if="promoted">&nbsp;</span>
+              <div class="thumbnail" v-if="thumbnail"><span><img
+                :src="thumbnail"></span></div>
+              <div class="card-searchstudio-js-body p-0" :key="propertyName"
+                v-for="(value, propertyName) in result">
+                <div v-if="displayProperty(value, propertyName)">
+                    <div class="card-searchstudio-js-text" :class="propertyName">
+                      <span class="image" v-if="isImage(value)"><img :src="value" /> </span>
+                      <span class=valueClass(value) v-html="extractedValue(propertyName, value)"
+                          v-else />
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>`}</Script>
+
+      <Script id="searchStaxCookies">{`
+        <div
+        class="related-searches-container">
+          <div v-if="storeState.relatedSearches.length">
+
+            <b>Related searches:</b>
+            <span v-for="(value, index) in storeState.relatedSearches"
+                  :key="index"
+                  class="related-search">
+              <a @@click="search(value, $event)"
+                      class="related-search-item"
+                href="#">
+                {{ value }}<span v-if="index < storeState.relatedSearches.length - 1 ">,</span>
+              </a>
+            </span>
+          </div>
+        </div>`}</Script>
     </div>
   );
 };
