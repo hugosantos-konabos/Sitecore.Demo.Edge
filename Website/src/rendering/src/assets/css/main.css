@@ -156,3 +156,6 @@
 /* 9. Other styles */
 
 @import '../../../node_modules/react-loading-skeleton/dist/skeleton.css';
+
+/* SearchStax */
+@import './components/SearchStax/SearchStax.css';
