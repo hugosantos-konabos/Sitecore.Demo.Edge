@@ -4,7 +4,7 @@ import { ImageField, Image } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { isCommerceEnabled } from '../../helpers/CommerceHelper';
 
-export type MainNavigationProps = ComponentProps & {
+export type MainNavigationWithSearchProps = ComponentProps & {
   fields: {
     data: {
       item: {
@@ -38,7 +38,7 @@ export type MainNavigationProps = ComponentProps & {
   };
 };
 
-const MainNavigation = (props: MainNavigationProps): JSX.Element => {
+const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Element => {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const shopLink = isCommerceEnabled && (
     <li className="text-menu-item">
@@ -90,6 +90,15 @@ const MainNavigation = (props: MainNavigationProps): JSX.Element => {
                 <a className="btn-main">Book Tickets</a>
               </Link>
             </li>
+            <div className="global-search-wrapper">
+              <input
+                type="text"
+                placeholder="Type the search here"
+                aria-label="Search field"
+                className="global-search-box"
+                data-url="/search"
+              ></input>
+            </div>
           </ul>
         </div>
       </div>
@@ -97,4 +106,4 @@ const MainNavigation = (props: MainNavigationProps): JSX.Element => {
   );
 };
 
-export default MainNavigation;
+export default MainNavigationWithSearch;
