@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { ImageField, Image } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { isCommerceEnabled } from '../../helpers/CommerceHelper';
-import Script from 'next/script';
 
 export type MainNavigationWithSearchProps = ComponentProps & {
   fields: {
