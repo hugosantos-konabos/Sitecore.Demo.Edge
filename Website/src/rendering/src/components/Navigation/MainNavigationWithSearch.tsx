@@ -38,24 +38,17 @@ export type MainNavigationWithSearchProps = ComponentProps & {
   };
 };
 
-const handlePromoCodeKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
-  if (event.key === 'Enter') {
-    alert(1);
-  }
-};
-
-const handleOnChange = async (event: ChangeEvent<HTMLInputElement>) => {
-  alert(2);
-  alert(event.target.value);
-};
-
-// const redirectToSearchPage = () => {
-//   // document.getElementById(sessionId)?.classList.remove('active');
-//   window.location.href = '/search';
-// };
-
 const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Element => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [query, setQuery] = useState('');
+
+  const searchBoxKeyUp = async (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      alert(query);
+      window.location.href = '/search?searchStudioQuery=' + query;
+    }
+  };
+
   const shopLink = isCommerceEnabled && (
     <li className="text-menu-item">
       <Link href="/shop">
@@ -112,9 +105,8 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
                 placeholder="Type the search here"
                 aria-label="Search field 2"
                 className="global-search-box"
-                //onClick={() => redirectToSearchPage}
-                onKeyDown={handlePromoCodeKeyDown}
-                onChange={(event) => handleOnChange(event)}
+                onKeyUp={(event) => searchBoxKeyUp(event)}
+                onChange={(event) => setQuery(event.target.value)}
               ></input>
             </div>
           </ul>
