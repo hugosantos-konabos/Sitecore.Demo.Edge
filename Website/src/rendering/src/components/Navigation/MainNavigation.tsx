@@ -90,6 +90,15 @@ const MainNavigation = (props: MainNavigationProps): JSX.Element => {
                 <a className="btn-main">Book Tickets</a>
               </Link>
             </li>
+            <div className="global-search-wrapper">
+              <input
+                type="text"
+                placeholder="Type the search here"
+                aria-label="Search field"
+                className="global-search-box"
+                data-url="/search"
+              ></input>
+            </div>
           </ul>
         </div>
       </div>
