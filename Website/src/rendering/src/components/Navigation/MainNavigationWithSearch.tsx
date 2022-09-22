@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState, KeyboardEvent, ChangeEvent } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 import { ImageField, Image } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { isCommerceEnabled } from '../../helpers/CommerceHelper';
