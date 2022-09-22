@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { ImageField, Image } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { isCommerceEnabled } from '../../helpers/CommerceHelper';
+import Script from 'next/script';
 
 export type MainNavigationWithSearchProps = ComponentProps & {
   fields: {
@@ -36,6 +37,11 @@ export type MainNavigationWithSearchProps = ComponentProps & {
       };
     };
   };
+};
+
+const redirectToSearchPage = () => {
+  // document.getElementById(sessionId)?.classList.remove('active');
+  window.location.href = '/search';
 };
 
 const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Element => {
@@ -97,6 +103,7 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
                 aria-label="Search field"
                 className="global-search-box"
                 data-url="/search"
+                onClick={() => redirectToSearchPage}
               ></input>
             </div>
           </ul>
