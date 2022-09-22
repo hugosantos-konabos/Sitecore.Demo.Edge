@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent, ChangeEvent } from 'react';
 import { ImageField, Image } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { isCommerceEnabled } from '../../helpers/CommerceHelper';
@@ -38,10 +38,21 @@ export type MainNavigationWithSearchProps = ComponentProps & {
   };
 };
 
-const redirectToSearchPage = () => {
-  // document.getElementById(sessionId)?.classList.remove('active');
-  window.location.href = '/search';
+const handlePromoCodeKeyDown = async (event: KeyboardEvent<HTMLInputElement>) => {
+  if (event.key === 'Enter') {
+    alert(1);
+  }
 };
+
+const handleOnChange = async (event: ChangeEvent<HTMLInputElement>) => {
+  alert(2);
+  alert(event.target.value);
+};
+
+// const redirectToSearchPage = () => {
+//   // document.getElementById(sessionId)?.classList.remove('active');
+//   window.location.href = '/search';
+// };
 
 const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Element => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -99,9 +110,11 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
               <input
                 type="text"
                 placeholder="Type the search here"
-                aria-label="Search field"
+                aria-label="Search field 2"
                 className="global-search-box"
-                onClick={() => redirectToSearchPage}
+                //onClick={() => redirectToSearchPage}
+                onKeyDown={handlePromoCodeKeyDown}
+                onChange={(event) => handleOnChange(event)}
               ></input>
             </div>
           </ul>
