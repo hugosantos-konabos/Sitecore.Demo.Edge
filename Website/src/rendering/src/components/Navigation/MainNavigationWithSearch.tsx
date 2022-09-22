@@ -102,7 +102,7 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
               <input
                 type="text"
                 placeholder="Type the search here"
-                aria-label="Search field 2"
+                aria-label="Search field"
                 className="global-search-box"
                 onKeyUp={(event) => searchBoxKeyUp(event)}
                 onChange={(event) => setQuery(event.target.value)}
