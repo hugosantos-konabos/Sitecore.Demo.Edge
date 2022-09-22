@@ -101,7 +101,6 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
                 placeholder="Type the search here"
                 aria-label="Search field"
                 className="global-search-box"
-                data-url="/search"
                 onClick={() => redirectToSearchPage}
               ></input>
             </div>
