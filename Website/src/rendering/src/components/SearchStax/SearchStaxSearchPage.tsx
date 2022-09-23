@@ -170,7 +170,7 @@ const SearchPage = (): JSX.Element => {
               date: format_date,
             },
             hideUniqueKey: true,
-            searchAdditionalArgs: 'hl.fragsize=200&fq=_language:\"en\"&_haslayout_b:true',
+            searchAdditionalArgs: 'hl.fragsize=200&fq=_language:\"en\"&fq=_haslayout_b:true',
             language: 'en',
           },
           searchResults: '#searchResultsSection',
