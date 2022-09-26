@@ -1,0 +1,109 @@
+<project>
+  <Metadata>
+    <metadata>
+      <PackageName>SearchStax-for-Sitecore-Symposium</PackageName>
+      <Author>SearchStax Inc.</Author>
+      <Version>1.0.0</Version>
+      <Revision />
+      <License />
+      <Comment />
+      <Attributes />
+      <Readme />
+      <Publisher>SearchStax Inc.</Publisher>
+      <PostStep />
+      <PackageID />
+    </metadata>
+  </Metadata>
+  <SaveProject>True</SaveProject>
+  <Sources>
+    <xitems>
+      <Entries>
+        <x-item>/core/sitecore/client/Applications/Launchpad/PageSettings/Buttons/SearchStax/{17B01DCE-C6D6-4B94-94B5-AD4867DD1954}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Applications/Launchpad/PageSettings/Buttons/SearchStax/Module Configuration/{FEA56755-A755-407C-91F1-F2A25496D125}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Applications/Launchpad/PageSettings/Buttons/SearchStax/Relevance and Promotions/{C345EC96-60A9-4C57-B415-CEEA1A6CF4D1}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Applications/Launchpad/PageSettings/Buttons/SearchStax/Search Analytics/{3D42A94A-BEA0-4753-BBC6-80F75C6AFC5D}/invariant/0</x-item>
+        <x-item>/core/sitecore/client/Applications/Launchpad/PageSettings/Buttons/SearchStax/Search Management/{9BD2F82E-B202-4C36-9957-2D1F9B021906}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Control Panel/SearchStax/{C68919B0-3774-4990-AF6B-954D5F34BA40}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Control Panel/SearchStax/Module Configuration/{3707B4FF-C641-41F9-B28A-8D1D9533B26F}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Control Panel/SearchStax/Relevance and Promotions/{614C5677-617F-4139-836B-B54E96D9F42C}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Control Panel/SearchStax/Search Analytics/{08A960EE-DB74-4E3C-92A1-C569D0A9BA16}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Control Panel/SearchStax/Search Management/{84351740-8E8B-4D60-8A58-89AD6EC73B88}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Layouts/Feature/SearchStax/{78C6A021-5315-4CEB-9991-8ECA65D6A49F}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Layouts/Feature/SearchStax/SearchStaxPage/{EAC65863-C718-45F5-A166-D10DB0E27F8F}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Feature/SearchStax/{A16CF0DA-F5AF-44D3-89E5-FC41573E6275}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Feature/SearchStax/SearchPage/{C86C75E9-92CA-4D8B-8C00-F19F5866E011}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Feature/SearchStax/SearchPage/SearchStaxPageRendering/{B67A95A8-B09D-48F7-A966-0D0D17BD17D5}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/{BDFFF988-F1EF-4603-969F-CC89EC33ABE6}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/{A049F3AB-B485-4FA2-BE41-5260F011BE0D}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStaxPage/__Standard Values/{DE05CF30-3871-47A9-BF10-082518E96BC8}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStaxPage/{A31BD8D3-CDE3-4375-A7EF-3F9661A491D3}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStaxPage/SearchStax Settings/{BFC08577-05E9-40FE-BFFD-26CE5B95BDFA}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStaxPage/SearchStax Settings/SearchModelDefinition/{713FA349-F66A-4FCA-9994-8C3B9CEC21BF}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStaxPage/SearchStax Settings/OverrideIndexCoreName/{8A7222EE-7DD5-40F2-ABB9-51D92289507F}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Feature/SearchStax/SearchPage/SearchStaxStyling/{D4F621B8-0CA2-4971-8127-2CAD45B08DAA}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStaxPage/SearchStax Settings/SearchModel/{4D0F406D-3A26-4B1A-AC1E-AF1B4A037D95}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>SearchStax Sitecore Items</Name>
+    </xitems>
+    <xitems>
+      <Entries>
+        <x-item>/master/sitecore/system/Settings/Rules/SearchStax Rules/{9A36A21C-10CF-4098-A4FE-BC6641BE401F}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/SearchStax Rules/Rules/{20A7033A-17D0-40E6-82CB-42AF2C92F3F7}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/SearchStax Rules/Tags/{4A850B0C-4340-4DEB-BAE7-33806F5480A9}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/SearchStax Rules/Tags/Default/{AC168A7D-4A35-45C0-B718-D4734FFBCF84}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Elements/SearchStax Search Models/{555961A3-B01C-4FCC-8028-7987AB9591F7}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Elements/SearchStax Search Models/Profile Key/{20E81935-9A3A-4E6C-9BEC-676D2D8913CE}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Elements/SearchStax Search Models/Profile Pattern/{2A5CC274-5628-41F5-B19A-6EB5C93CE144}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Elements/SearchStax Search Models/Select Search Model/{1024A1B7-20B0-4D3A-AC48-2F946034661D}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Elements/SearchStax Search Models/Tags/{1C734B31-35B8-4DA1-BB0A-4DA285255B7B}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Elements/SearchStax Search Models/Tags/Default/{73096D75-C2AE-4A8C-A022-CEE74DB91885}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Elements/SearchStax Search Models/Visibility/{198162D1-3CD5-438A-A039-6A8A830D9D39}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Tags/SearchStax Search Models/{F4A10B31-E406-4179-85B4-AB7BAAFDEE2A}/invariant/0</x-item>
+        <x-item>/master/sitecore/system/Settings/Rules/Definitions/Tags/SearchStax Search Models/Visibility/{0A2A586B-4369-4FA9-892B-1AD627E636A1}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Personalization Items</Name>
+    </xitems>
+  </Sources>
+  <Converter>
+    <TrivialConverter>
+      <Transforms />
+    </TrivialConverter>
+  </Converter>
+  <Include />
+  <Exclude />
+  <Name />
+</project>
