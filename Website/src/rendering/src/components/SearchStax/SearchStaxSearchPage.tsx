@@ -3,20 +3,11 @@ import Script from 'next/script';
 const SearchPage = (): JSX.Element => {
   return (
     <div>
-      <Script
-        src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"
-        strategy="beforeInteractive"
-      ></Script>
-      <Script
-        src="https://static.searchstax.com/studio-js/v3/js/studio-vendors.js"
-        strategy="beforeInteractive"
-      ></Script>
-      <Script
-        src="https://static.searchstax.com/studio-js/v3/js/search-widget.min.js"
-        strategy="beforeInteractive"
-      ></Script>
+      <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
+      <Script src="https://static.searchstax.com/studio-js/v3/js/studio-vendors.js"></Script>
+      <Script src="https://static.searchstax.com/studio-js/v3/js/search-widget.min.js"></Script>
 
-      <Script strategy="beforeInteractive" id="searchStaxAnalytics">{`
+      <Script id="searchStaxAnalytics">{`
         var _msq = _msq || []; //declare object
         var analyticsBaseUrl = "https://analytics-us.searchstax.com";
         (function () {
@@ -50,7 +41,7 @@ const SearchPage = (): JSX.Element => {
         </div>
       </div>
 
-      <Script strategy="beforeInteractive" id="searchStaxCookies">{`
+      <Script id="searchStaxCookies">{`
          function getCookie(name) {
           let matches = document.cookie.match(new RegExp('(?:^|; )' +
               name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
@@ -100,7 +91,7 @@ const SearchPage = (): JSX.Element => {
           return cookieID;
       }`}</Script>
 
-      <Script strategy="beforeInteractive" type="text/x-template" id="result-template">{`
+      <Script type="text/x-template" id="result-template">{`
         <div class="card-searchstudio-js-custom"
           :class="{'card-searchstudio-js-grid-layout': isGridLayout, 'has-thumbnail': thumbnail
           !== ''}">
@@ -130,11 +121,7 @@ const SearchPage = (): JSX.Element => {
           </div>
         </div>`}</Script>
 
-      <Script
-        strategy="beforeInteractive"
-        type="text/x-template"
-        id="customRelatedSearches-template"
-      >{`
+      <Script type="text/x-template" id="customRelatedSearches-template">{`
         <div class="related-searches-container">
           <div v-if="storeState.relatedSearches.length">
 
@@ -151,7 +138,7 @@ const SearchPage = (): JSX.Element => {
           </div>
         </div>`}</Script>
 
-      <Script strategy="beforeInteractive" id="studioConfig">{`
+      <Script id="studioConfig">{`
         const session = getOrSetCookie('searchcookie');
 
         function format_date(value) {
@@ -200,7 +187,7 @@ const SearchPage = (): JSX.Element => {
           paginationSection: '#paginationSection',
         };`}</Script>
 
-      <Script strategy="beforeInteractive" id="searchstaxWidget">{`
+      <Script id="searchstaxWidget">{`
         (function (w, d, s, o, f) {
           w['sf-widget'] = o;
           w[o] =
