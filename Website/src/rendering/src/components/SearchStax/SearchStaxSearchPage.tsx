@@ -1,8 +1,17 @@
+import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
 import Script from 'next/script';
 import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
-import { SitecoreContextValue } from 'lib/component-props';
+import { SitecoreContextValue, ComponentProps } from 'lib/component-props';
 
-const SearchPage = (): JSX.Element => {
+type SearchStaxSearchPageProps = ComponentProps & {
+  fields: {
+    SearchModelDefinition: Field<string>;
+    OverrideIndexCoreName: Field<string>;
+    SearchModel: Field<string>;
+  };
+};
+
+const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
   const { sitecoreContext } = useSitecoreContext<SitecoreContextValue>();
 
   let language = sitecoreContext.language;
@@ -10,6 +19,11 @@ const SearchPage = (): JSX.Element => {
     language = language.substring(0, 2);
   }
 
+  let additionalArgs = 'hl.fragsize=200&fq=_language:"' + language + '"&fq=_haslayout_b:true';
+
+  if (props.fields.SearchModel != undefined) {
+    additionalArgs += '&model=' + props.fields.SearchModel;
+  }
   return (
     <div>
       <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
@@ -179,7 +193,7 @@ const SearchPage = (): JSX.Element => {
               date: format_date,
             },
             hideUniqueKey: true,
-            searchAdditionalArgs: 'hl.fragsize=200&fq=_language:\"en\"&fq=_haslayout_b:true',
+            searchAdditionalArgs: '${additionalArgs}',
             language: '${language}',
           },
           searchResults: '#searchResultsSection',
