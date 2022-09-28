@@ -16,7 +16,7 @@ const SearchPage = (): JSX.Element => {
         strategy="beforeInteractive"
       ></Script>
 
-      <Script id="searchStaxAnalytics">{`
+      <Script strategy="beforeInteractive" id="searchStaxAnalytics">{`
         var _msq = _msq || []; //declare object
         var analyticsBaseUrl = "https://analytics-us.searchstax.com";
         (function () {
@@ -50,7 +50,7 @@ const SearchPage = (): JSX.Element => {
         </div>
       </div>
 
-      <Script id="searchStaxCookies">{`
+      <Script strategy="beforeInteractive" id="searchStaxCookies">{`
          function getCookie(name) {
           let matches = document.cookie.match(new RegExp('(?:^|; )' +
               name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)'));
@@ -100,7 +100,7 @@ const SearchPage = (): JSX.Element => {
           return cookieID;
       }`}</Script>
 
-      <Script type="text/x-template" id="result-template">{`
+      <Script strategy="beforeInteractive" type="text/x-template" id="result-template">{`
         <div class="card-searchstudio-js-custom"
           :class="{'card-searchstudio-js-grid-layout': isGridLayout, 'has-thumbnail': thumbnail
           !== ''}">
@@ -130,7 +130,11 @@ const SearchPage = (): JSX.Element => {
           </div>
         </div>`}</Script>
 
-      <Script type="text/x-template" id="customRelatedSearches-template">{`
+      <Script
+        strategy="beforeInteractive"
+        type="text/x-template"
+        id="customRelatedSearches-template"
+      >{`
         <div class="related-searches-container">
           <div v-if="storeState.relatedSearches.length">
 
@@ -147,7 +151,7 @@ const SearchPage = (): JSX.Element => {
           </div>
         </div>`}</Script>
 
-      <Script id="studioConfig">{`
+      <Script strategy="beforeInteractive" id="studioConfig">{`
         const session = getOrSetCookie('searchcookie');
 
         function format_date(value) {
@@ -196,7 +200,7 @@ const SearchPage = (): JSX.Element => {
           paginationSection: '#paginationSection',
         };`}</Script>
 
-      <Script id="searchstaxWidget">{`
+      <Script strategy="beforeInteractive" id="searchstaxWidget">{`
         (function (w, d, s, o, f) {
           w['sf-widget'] = o;
           w[o] =
