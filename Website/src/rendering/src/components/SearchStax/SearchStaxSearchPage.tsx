@@ -3,9 +3,18 @@ import Script from 'next/script';
 const SearchPage = (): JSX.Element => {
   return (
     <div>
-      <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
-      <Script src="https://static.searchstax.com/studio-js/v3/js/studio-vendors.js"></Script>
-      <Script src="https://static.searchstax.com/studio-js/v3/js/search-widget.min.js"></Script>
+      <Script
+        src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"
+        strategy="beforeInteractive"
+      ></Script>
+      <Script
+        src="https://static.searchstax.com/studio-js/v3/js/studio-vendors.js"
+        strategy="beforeInteractive"
+      ></Script>
+      <Script
+        src="https://static.searchstax.com/studio-js/v3/js/search-widget.min.js"
+        strategy="beforeInteractive"
+      ></Script>
 
       <Script id="searchStaxAnalytics">{`
         var _msq = _msq || []; //declare object
