@@ -5,6 +5,11 @@ import { SitecoreContextValue } from 'lib/component-props';
 const SearchPage = (): JSX.Element => {
   const { sitecoreContext } = useSitecoreContext<SitecoreContextValue>();
 
+  let language = sitecoreContext.language;
+  if (language?.length > 2) {
+    language = language.substring(0, 2);
+  }
+
   return (
     <div>
       <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
@@ -175,7 +180,7 @@ const SearchPage = (): JSX.Element => {
             },
             hideUniqueKey: true,
             searchAdditionalArgs: 'hl.fragsize=200&fq=_language:\"en\"&fq=_haslayout_b:true',
-            language: '${sitecoreContext.language}',
+            language: '${language}',
           },
           searchResults: '#searchResultsSection',
           searchInput: '#searchInput',
