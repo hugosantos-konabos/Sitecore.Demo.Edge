@@ -1,6 +1,10 @@
 import Script from 'next/script';
+import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
+import { SitecoreContextValue } from 'lib/component-props';
 
 const SearchPage = (): JSX.Element => {
+  const { sitecoreContext } = useSitecoreContext<SitecoreContextValue>();
+
   return (
     <div>
       <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
@@ -171,7 +175,7 @@ const SearchPage = (): JSX.Element => {
             },
             hideUniqueKey: true,
             searchAdditionalArgs: 'hl.fragsize=200&fq=_language:\"en\"&fq=_haslayout_b:true',
-            language: 'en',
+            language: '${sitecoreContext.language}',
           },
           searchResults: '#searchResultsSection',
           searchInput: '#searchInput',
