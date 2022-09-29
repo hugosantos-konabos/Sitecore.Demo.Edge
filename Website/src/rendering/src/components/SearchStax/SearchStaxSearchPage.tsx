@@ -13,6 +13,16 @@ type SearchStaxSearchPageProps = ComponentProps & {
 
 const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
   const { sitecoreContext } = useSitecoreContext<SitecoreContextValue>();
+  const searchEndpointUrl =
+    'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820/emselect';
+  const authenticationToken = 'YXBwODIwLWFwaTpLb25hYm9zITIz';
+  const apiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
+  const fieldsMapping =
+    '{"title":"resulttitle_t","url":"resulturl_s","description":"renderedcontent_t","ribbon":"_templatename","paths":"_fullpath"}';
+  const suggesterEndpointUrl =
+    'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest';
+  const searchApiKey = '64d9d3225a7f03d96cf01418fe49e3269b8cbb89';
+  const analyticsApiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
 
   let language = sitecoreContext.language;
   if (language?.length > 2) {
@@ -24,6 +34,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
   if (props.fields.SearchModel.value !== undefined && props.fields.SearchModel.value != '') {
     additionalArgs += '&model=' + props.fields.SearchModel.value;
   }
+
   return (
     <div>
       <Script src="https://static.searchstax.com/studio-js/v3/js/studio-app.js"></Script>
@@ -181,14 +192,14 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         }
         const studioConfig = {
           "connector": {
-            "url": "https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820/emselect",
-            "authentication": "YXBwODIwLWFwaTpLb25hYm9zITIz",
-            "apikey": "lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI",
+            "url": "${searchEndpointUrl}",
+            "authentication": "${authenticationToken}",
+            "apikey": "${apiKey}",
             "session": session,
-            "fields": {"title":"resulttitle_t","url":"resulturl_s","description":"renderedcontent_t","ribbon":"_templatename","paths":"_fullpath"},
-            "suggester": "https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest",
+            "fields": ${fieldsMapping},
+            "suggester": "${suggesterEndpointUrl}",
             "relatedSearches": "",
-            "searchAPIKey":  "64d9d3225a7f03d96cf01418fe49e3269b8cbb89",
+            "searchAPIKey":  "${searchApiKey}",
             "fieldFormatters": {
               date: format_date,
             },
@@ -224,7 +235,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
           js.async = 1;
           fjs.parentNode.insertBefore(js, fjs);
       })(window, document, 'script', '_sf', 'https://static.searchstax.com/studio-js/v3/js/studio-feedback.js');
-      _sf('lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI');`}</Script>
+      _sf('${analyticsApiKey}');`}</Script>
     </div>
   );
 };
