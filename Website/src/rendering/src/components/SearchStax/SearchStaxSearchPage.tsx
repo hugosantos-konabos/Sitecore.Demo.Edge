@@ -8,13 +8,13 @@ type SearchStaxSearchPageProps = ComponentProps & {
     SearchModelDefinition: Field<string>;
     OverrideIndexCoreName: Field<string>;
     SearchModel: Field<string>;
-    searchEndpointUrl: Field<string>;
-    authenticationToken: Field<string>;
-    apiKey: Field<string>;
-    fieldsMapping: Field<string>;
-    suggesterEndpointUrl: Field<string>;
-    searchApiKey: Field<string>;
-    analyticsApiKey: Field<string>;
+    SearchEndpointUrl: Field<string>;
+    AuthenticationToken: Field<string>;
+    ApiKey: Field<string>;
+    FieldsMapping: Field<string>;
+    SuggesterEndpointUrl: Field<string>;
+    SearchApiKey: Field<string>;
+    AnalyticsApiKey: Field<string>;
   };
 };
 
@@ -199,14 +199,14 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         }
         const studioConfig = {
           "connector": {
-            "url": "${props.fields.searchEndpointUrl.value}",
-            "authentication": "${props.fields.authenticationToken.value}",
-            "apikey": "${props.fields.apiKey.value}",
+            "url": "${props.fields.SearchEndpointUrl.value}",
+            "authentication": "${props.fields.AuthenticationToken.value}",
+            "apikey": "${props.fields.ApiKey.value}",
             "session": session,
-            "fields": ${props.fields.fieldsMapping.value},
-            "suggester": "${props.fields.suggesterEndpointUrl.value}",
+            "fields": ${props.fields.FieldsMapping.value},
+            "suggester": "${props.fields.SuggesterEndpointUrl.value}",
             "relatedSearches": "",
-            "searchAPIKey":  "${props.fields.searchApiKey.value}",
+            "searchAPIKey":  "${props.fields.SearchApiKey.value}",
             "fieldFormatters": {
               date: format_date,
             },
@@ -243,7 +243,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
           js.async = 1;
           fjs.parentNode.insertBefore(js, fjs);
       })(window, document, 'script', '_sf', 'https://static.searchstax.com/studio-js/v3/js/studio-feedback.js');
-      _sf('${props.fields.analyticsApiKey.value}');`}</Script>
+      _sf('${props.fields.AnalyticsApiKey.value}');`}</Script>
     </div>
   );
 };
