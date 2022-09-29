@@ -9,7 +9,6 @@ type SearchStaxSearchPageProps = ComponentProps & {
     OverrideIndexCoreName: Field<string>;
     SearchModel: Field<string>;
     SearchEndpointUrl: Field<string>;
-    AuthenticationToken: Field<string>;
     ApiKey: Field<string>;
     FieldsMapping: Field<string>;
     SuggesterEndpointUrl: Field<string>;
