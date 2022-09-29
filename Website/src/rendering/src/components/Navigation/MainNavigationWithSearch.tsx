@@ -45,8 +45,11 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
   const searchBoxKeyUp = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       if (query === undefined || query === '') {
+        alert(1);
         setQuery('*');
+        alert(query);
       }
+      alert(query);
       window.location.href = '/search?searchStudioQuery=' + query;
     }
   };
