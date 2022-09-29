@@ -97,6 +97,38 @@
       <Exclude />
       <Name>Personalization Items</Name>
     </xitems>
+    <xitems>
+      <Entries>
+        <x-item>/master/sitecore/content/EdgeWebsite/home/Search/{68ED479D-0005-46E2-A961-F32FD07A0761}/invariant/0</x-item>
+        <x-item>/master/sitecore/content/EdgeWebsite/home/Search/Page Components/{9885AC48-33A2-4412-87DD-F8DEC2DBED50}/invariant/0</x-item>
+        <x-item>/master/sitecore/content/EdgeWebsite/home/Search/Page Components/Content Section/{9BEB437D-2173-4742-A556-F57E96078D86}/invariant/0</x-item>
+        <x-item>/master/sitecore/content/EdgeWebsite/home/Search/Page Components/SearchStax for Symposium/{12D759AE-3F5C-4791-AC71-31D90A40D15F}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Project/edgewebsite/Navigation/MainNavigationWithSearch/{D177DF7D-C76D-41D1-9421-977D093ECA84}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Project/edgewebsite/SearchStax/{2BFBDE7D-1989-4D58-A241-111C1E766B93}/invariant/0</x-item>
+        <x-item>/master/sitecore/layout/Renderings/Project/edgewebsite/SearchStax/SearchStaxSearchPageHeadless/{92F68B16-15F9-496C-B1D6-930268989068}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/__Standard Values/{CBC2F9EF-0E49-4D9A-9CD7-C110FA5BFC41}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/{EC977BA5-FFD3-4397-96DF-0A6EACDF2C3C}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Relevance/{6EB6EA29-3052-449D-9D83-A5A557DB4B23}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Relevance/SearchModel/{25BBC4EE-4126-4E66-923A-B10A1321178E}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/{2BF247FE-81AC-40C2-A607-A374F42204A7}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/AnalyticsApiKey/{84E1F08C-312D-48D7-96E7-4552EEE1BCC0}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/ApiKey/{C7544C8A-F5F1-478E-BB45-ACEBCBB14916}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/AuthenticationToken/{BADA03F6-2F0B-438F-9EA9-C7445E24EAD6}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/FieldsMapping/{7E26FC1D-CF68-4EF4-8EB2-3A1B3BAE4EC2}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/SearchApiKey/{CCA3F275-BB39-4C26-A758-B4DB13138037}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/SearchEndpointUrl/{E7DC5AC9-44C0-423A-B014-37A75273B0D8}/invariant/0</x-item>
+        <x-item>/master/sitecore/templates/Feature/SearchStax/SearchPage/SearchStax for Symposium/SearchStax Settings/SuggesterEndpointUrl/{9084D32C-8522-48DF-9586-11874E7F3A5A}/invariant/0</x-item>
+      </Entries>
+      <SkipVersions>False</SkipVersions>
+      <Converter>
+        <ItemToEntryConverter>
+          <Transforms />
+        </ItemToEntryConverter>
+      </Converter>
+      <Include />
+      <Exclude />
+      <Name>Symposium</Name>
+    </xitems>
   </Sources>
   <Converter>
     <TrivialConverter>
