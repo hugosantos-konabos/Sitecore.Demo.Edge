@@ -8,21 +8,28 @@ type SearchStaxSearchPageProps = ComponentProps & {
     SearchModelDefinition: Field<string>;
     OverrideIndexCoreName: Field<string>;
     SearchModel: Field<string>;
+    searchEndpointUrl: Field<string>;
+    authenticationToken: Field<string>;
+    apiKey: Field<string>;
+    fieldsMapping: Field<string>;
+    suggesterEndpointUrl: Field<string>;
+    searchApiKey: Field<string>;
+    analyticsApiKey: Field<string>;
   };
 };
 
 const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
   const { sitecoreContext } = useSitecoreContext<SitecoreContextValue>();
-  const searchEndpointUrl =
-    'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820/emselect';
-  const authenticationToken = 'YXBwODIwLWFwaTpLb25hYm9zITIz';
-  const apiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
-  const fieldsMapping =
-    '{"title":"resulttitle_t","url":"resulturl_s","description":"renderedcontent_t","ribbon":"_templatename","paths":"_fullpath"}';
-  const suggesterEndpointUrl =
-    'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest';
-  const searchApiKey = '64d9d3225a7f03d96cf01418fe49e3269b8cbb89';
-  const analyticsApiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
+  // const searchEndpointUrl =
+  //   'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820/emselect';
+  // const authenticationToken = 'YXBwODIwLWFwaTpLb25hYm9zITIz';
+  // const apiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
+  // const fieldsMapping =
+  //   '{"title":"resulttitle_t","url":"resulturl_s","description":"renderedcontent_t","ribbon":"_templatename","paths":"_fullpath"}';
+  // const suggesterEndpointUrl =
+  //   'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest';
+  // const searchApiKey = '64d9d3225a7f03d96cf01418fe49e3269b8cbb89';
+  // const analyticsApiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
 
   let language = sitecoreContext.language;
   if (language?.length > 2) {
@@ -192,14 +199,14 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         }
         const studioConfig = {
           "connector": {
-            "url": "${searchEndpointUrl}",
-            "authentication": "${authenticationToken}",
-            "apikey": "${apiKey}",
+            "url": "${props.fields.searchEndpointUrl.value}",
+            "authentication": "${props.fields.authenticationToken.value}",
+            "apikey": "${props.fields.apiKey.value}",
             "session": session,
-            "fields": ${fieldsMapping},
-            "suggester": "${suggesterEndpointUrl}",
+            "fields": ${props.fields.fieldsMapping.value},
+            "suggester": "${props.fields.suggesterEndpointUrl.value}",
             "relatedSearches": "",
-            "searchAPIKey":  "${searchApiKey}",
+            "searchAPIKey":  "${props.fields.searchApiKey.value}",
             "fieldFormatters": {
               date: format_date,
             },
@@ -236,7 +243,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
           js.async = 1;
           fjs.parentNode.insertBefore(js, fjs);
       })(window, document, 'script', '_sf', 'https://static.searchstax.com/studio-js/v3/js/studio-feedback.js');
-      _sf('${analyticsApiKey}');`}</Script>
+      _sf('${props.fields.analyticsApiKey.value}');`}</Script>
     </div>
   );
 };
