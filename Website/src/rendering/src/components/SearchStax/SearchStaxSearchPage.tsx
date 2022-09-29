@@ -15,6 +15,8 @@ type SearchStaxSearchPageProps = ComponentProps & {
     SuggesterEndpointUrl: Field<string>;
     SearchApiKey: Field<string>;
     AnalyticsApiKey: Field<string>;
+    SolrUsername: Field<string>;
+    SolrPassword: Field<string>;
   };
 };
 
@@ -30,6 +32,10 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
   //   'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest';
   // const searchApiKey = '64d9d3225a7f03d96cf01418fe49e3269b8cbb89';
   // const analyticsApiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
+
+  const basicToken = new Buffer(
+    props.fields.SolrUsername.value + ':' + props.fields.SolrPassword.value
+  ).toString('base64');
 
   let language = sitecoreContext.language;
   if (language?.length > 2) {
@@ -200,7 +206,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         const studioConfig = {
           "connector": {
             "url": "${props.fields.SearchEndpointUrl.value}",
-            "authentication": "${props.fields.AuthenticationToken.value}",
+            "authentication": "${basicToken}",
             "apikey": "${props.fields.ApiKey.value}",
             "session": session,
             "fields": ${props.fields.FieldsMapping.value},
