@@ -21,7 +21,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
 
   let additionalArgs = 'hl.fragsize=200&fq=_language:"' + language + '"&fq=_haslayout_b:true';
 
-  if (props.fields.SearchModel != undefined) {
+  if (props.fields.SearchModel.value !== undefined && props.fields.SearchModel.value != '') {
     additionalArgs += '&model=' + props.fields.SearchModel.value;
   }
   return (
