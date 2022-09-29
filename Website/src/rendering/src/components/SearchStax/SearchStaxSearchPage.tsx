@@ -206,6 +206,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
             hideUniqueKey: true,
             searchAdditionalArgs: '${additionalArgs}',
             language: '${language}',
+            defaultQuery: "*"
           },
           searchResults: '#searchResultsSection',
           searchInput: '#searchInput',
