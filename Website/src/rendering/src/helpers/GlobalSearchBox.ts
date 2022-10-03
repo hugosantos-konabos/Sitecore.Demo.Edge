@@ -97,7 +97,7 @@ function performAutoSuggestion(input: HTMLInputElement) {
         input.value = this.getElementsByTagName('input')[0].value;
         const searchUrl = '/search';
         const query = input.value;
-        window.location.href = searchUrl + '?#q=' + query;
+        window.location.href = searchUrl + '?searchStudioQuery=' + query;
       });
       autoCompleteListDiv.appendChild(b);
     }
