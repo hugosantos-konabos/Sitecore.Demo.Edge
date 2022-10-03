@@ -86,12 +86,13 @@ function performAutoSuggestion(input: HTMLInputElement) {
       input.parentNode.appendChild(autoCompleteListDiv);
     }
     for (let i = 0; i < completions?.length; i++) {
-      const completionTerm = completions[i].term;
+      const completionTerm = completions[i].term as string;
+      const completionTermNoHtmlTags = completionTerm.replace('<b>', '').replace('</b>', '');
 
       const b = document.createElement('DIV');
       //.innerHTML += getHighlightedSuggestion(completionTerm, input.value);
       b.innerHTML += completionTerm;
-      b.innerHTML += "<input type='hidden' value='" + completionTerm + "'>";
+      b.innerHTML += "<input type='hidden' value='" + completionTermNoHtmlTags + "'>";
       b.addEventListener('click', function () {
         input.value = this.getElementsByTagName('input')[0].value;
         const searchUrl = '/search';
