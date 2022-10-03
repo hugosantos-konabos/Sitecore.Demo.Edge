@@ -3,7 +3,7 @@ import React, { useState, KeyboardEvent } from 'react';
 import { ImageField, Image } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { isCommerceEnabled } from '../../helpers/CommerceHelper';
-import Script from 'next/script';
+import { activateAutocomplete } from '../../helpers/GlobalSearchBox';
 
 export type MainNavigationWithSearchProps = ComponentProps & {
   fields: {
@@ -108,15 +108,12 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
                 className="global-search-box"
                 onKeyUp={(event) => searchBoxKeyUp(event)}
                 onChange={(event) => setQuery(event.target.value)}
+                onLoad={() => activateAutocomplete('searchfieldtop')}
               ></input>
             </div>
           </ul>
         </div>
       </div>
-
-      <Script src="../../helpers/GlobalSearchBox"></Script>
-      <Script src="../../helpers/GlobalSearchBox.js"></Script>
-      <Script id="enableSearchAutoSuggestion">{`window.addEventListener("load", function () { activateAutocomplete("searchfieldtop"); });`}</Script>
     </nav>
   );
 };
