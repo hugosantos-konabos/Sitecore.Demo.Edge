@@ -319,7 +319,7 @@
 }
 
 @media (min-width: 1280px) {
-    .global-search-wrapper {
+    .global-search-wrapper input {
         margin-top: 0 !important;
     }
 }
