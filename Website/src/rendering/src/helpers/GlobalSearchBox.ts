@@ -1,11 +1,13 @@
 export const activateAutocomplete = (inputSelector: string): void => {
+  alert(2);
   const input = document.querySelector<HTMLInputElement>(inputSelector);
+  alert(input.outerHTML);
   if (input !== null) {
     alert(3);
     configureAutocomplete(input);
     alert(4);
     document.addEventListener('click', function (e: MouseEvent) {
-      alert(5);
+      alert((e.target as HTMLElement).outerHTML);
       removeAutoCompletes(e.target as Element, input);
     });
   }
@@ -15,12 +17,15 @@ function configureAutocomplete(input: HTMLInputElement) {
   let currentFocus: number;
 
   input.addEventListener('input', function () {
+    alert('input');
     performAutoSuggestion(input);
   });
   input.addEventListener('focusin', function () {
+    alert('focusin');
     performAutoSuggestion(input);
   });
   input.addEventListener('keydown', function (e) {
+    alert('keydown');
     const autocompleteListElement = document.getElementById(this.id + 'autocomplete-list');
     if (autocompleteListElement) {
       const autocompleteListChildrenElements = autocompleteListElement.getElementsByTagName('div');
