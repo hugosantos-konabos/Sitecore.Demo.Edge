@@ -41,6 +41,7 @@ export type MainNavigationWithSearchProps = ComponentProps & {
 
 const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Element => {
   const [navbarOpen, setNavbarOpen] = useState(false);
+  const [autoSuggestEnabled, setAutoSuggestEnabled] = useState(false);
   const [query, setQuery] = useState('');
 
   const searchBoxKeyUp = async (event: KeyboardEvent<HTMLInputElement>) => {
@@ -58,8 +59,11 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
   );
 
   useEffect(() => {
-    activateAutocomplete('#searchfieldtop');
-  });
+    if (!autoSuggestEnabled) {
+      activateAutocomplete('#searchfieldtop');
+      setAutoSuggestEnabled(true);
+    }
+  }, [autoSuggestEnabled]);
 
   return (
     <nav className="main-navigation">
