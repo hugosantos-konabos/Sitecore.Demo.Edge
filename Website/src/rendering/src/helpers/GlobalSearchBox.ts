@@ -12,15 +12,12 @@ function configureAutocomplete(input: HTMLInputElement) {
   let currentFocus: number;
 
   input.addEventListener('input', function () {
-    console.log('input');
     performAutoSuggestion(input);
   });
   input.addEventListener('focusin', function () {
-    console.log('focusin');
     performAutoSuggestion(input);
   });
   input.addEventListener('keydown', function (e) {
-    console.log('keydown');
     const autocompleteListElement = document.getElementById(this.id + 'autocomplete-list');
     if (autocompleteListElement) {
       const autocompleteListChildrenElements = autocompleteListElement.getElementsByTagName('div');
@@ -43,7 +40,7 @@ function configureAutocomplete(input: HTMLInputElement) {
 
 function removeAutoCompletes(clickedElement: Element, input: HTMLInputElement) {
   const autocompleteItems = document.getElementsByClassName('autocomplete-items');
-  for (let i = 0; i < autocompleteItems.length; i++) {
+  for (let i = 0; i < autocompleteItems?.length; i++) {
     const autocompleteItem = autocompleteItems[i];
     if (clickedElement != autocompleteItem && clickedElement != input) {
       autocompleteItem.parentNode.removeChild(autocompleteItem);
@@ -52,7 +49,6 @@ function removeAutoCompletes(clickedElement: Element, input: HTMLInputElement) {
 }
 
 async function triggerQuerySuggestionCall(input: HTMLInputElement) {
-  console.log('before fetch');
   const rawResponse = await fetch(
     'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest?q=' +
       input.value +
@@ -66,9 +62,7 @@ async function triggerQuerySuggestionCall(input: HTMLInputElement) {
       },
     }
   );
-  console.log('after fetch');
   const content = await rawResponse.json();
-  console.log(content);
   const completions = content?.suggest?.studio_suggestor_en?.spo?.suggestions;
   return completions;
 }
@@ -80,16 +74,15 @@ function performAutoSuggestion(input: HTMLInputElement) {
   autoCompleteListDiv.setAttribute('id', 'autocomplete-list');
   autoCompleteListDiv.setAttribute('class', 'autocomplete-items');
 
-  console.log('before triggerQuerySuggestionCall');
   triggerQuerySuggestionCall(input).then((completions) => {
-    if (completions.length > 0) {
+    if (completions?.length > 0) {
       const autoCompleteDiv = document.getElementById('autocomplete-list');
       if (autoCompleteDiv !== null) {
         autoCompleteDiv.remove();
       }
       input.parentNode.appendChild(autoCompleteListDiv);
     }
-    for (let i = 0; i < completions.length; i++) {
+    for (let i = 0; i < completions?.length; i++) {
       const completionTerm = completions[i].term;
 
       const b = document.createElement('DIV');
@@ -110,14 +103,14 @@ function performAutoSuggestion(input: HTMLInputElement) {
 function addActive(items: HTMLCollectionOf<HTMLDivElement>, currentFocus: number) {
   if (!items) return false;
   removeActive(items);
-  if (currentFocus >= items.length) currentFocus = 0;
-  if (currentFocus < 0) currentFocus = items.length - 1;
+  if (currentFocus >= items?.length) currentFocus = 0;
+  if (currentFocus < 0) currentFocus = items?.length - 1;
   items[currentFocus].classList.add('autocomplete-active');
   return true;
 }
 
 function removeActive(items: HTMLCollectionOf<HTMLDivElement>) {
-  for (let i = 0; i < items.length; i++) {
+  for (let i = 0; i < items?.length; i++) {
     items[i].classList.remove('autocomplete-active');
   }
 }
