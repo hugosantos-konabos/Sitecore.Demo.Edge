@@ -333,9 +333,9 @@
     margin-top: 5px;
     border: 1px solid #d4d4d4;
     z-index: 99;
-    top: 100px;
+    top: 410px;
     padding-left: 15px;
-    width: 310px;
+    width: 284px;
     position: absolute;
     width: 310px;
     border: none;
@@ -343,8 +343,8 @@
 
 @media (min-width: 1280px) {
     .autocomplete-items {
-        top: 410px;
-        width: 284px;
+        top: 100px;
+        width: 310px;
     }
 }
 
