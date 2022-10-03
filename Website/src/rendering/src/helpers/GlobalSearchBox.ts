@@ -3,7 +3,6 @@ export const activateAutocomplete = (inputSelector: string): void => {
   if (input !== null) {
     configureAutocomplete(input);
     document.addEventListener('click', function (e: MouseEvent) {
-      alert((e.target as HTMLElement).outerHTML);
       removeAutoCompletes(e.target as Element, input);
     });
   }
@@ -55,7 +54,9 @@ function removeAutoCompletes(clickedElement: Element, input: HTMLInputElement) {
 async function triggerQuerySuggestionCall(input: HTMLInputElement) {
   console.log('before fetch');
   const rawResponse = await fetch(
-    'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest?q=spo&&language=en',
+    'https://ss984481-oi64ob1t-us-east-1-aws.searchstax.com/solr/sitecore1022-820-suggester/emsuggest?q=' +
+      input.value +
+      '&&language=en',
     {
       method: 'GET',
       headers: {
@@ -63,10 +64,6 @@ async function triggerQuerySuggestionCall(input: HTMLInputElement) {
         'Content-Type': 'application/json',
         Authorization: 'Basic YXBwODIwLWFwaTpLb25hYm9zITIz',
       },
-      body: JSON.stringify({
-        q: input.value,
-        language: 'en',
-      }),
     }
   );
   console.log('after fetch');

@@ -58,7 +58,6 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
   );
 
   useEffect(() => {
-    alert(0);
     activateAutocomplete('#searchfieldtop');
   });
 
