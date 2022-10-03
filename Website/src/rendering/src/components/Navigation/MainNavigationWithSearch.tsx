@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useState, KeyboardEvent } from 'react';
+import React, { useState, KeyboardEvent, useEffect } from 'react';
 import { ImageField, Image } from '@sitecore-jss/sitecore-jss-nextjs';
 import { ComponentProps } from 'lib/component-props';
 import { isCommerceEnabled } from '../../helpers/CommerceHelper';
@@ -57,6 +57,10 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
     </li>
   );
 
+  useEffect(() => {
+    activateAutocomplete('searchfieldtop');
+  });
+
   return (
     <nav className="main-navigation">
       <div className="navigation-content">
@@ -108,7 +112,6 @@ const MainNavigationWithSearch = (props: MainNavigationWithSearchProps): JSX.Ele
                 className="global-search-box"
                 onKeyUp={(event) => searchBoxKeyUp(event)}
                 onChange={(event) => setQuery(event.target.value)}
-                onLoad={() => activateAutocomplete('searchfieldtop')}
               ></input>
             </div>
           </ul>
