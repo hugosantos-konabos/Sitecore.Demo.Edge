@@ -1,6 +1,8 @@
 export const activateAutocomplete = (inputSelector: string): void => {
+  alert('EXECUTING activateAutocomplete');
   const input = document.querySelector<HTMLInputElement>(inputSelector);
   if (input !== null) {
+    alert('WILL CALL configureAutocomplete');
     configureAutocomplete(input);
     document.addEventListener('click', function (e: MouseEvent) {
       removeAutoCompletes(e.target as Element, input);
@@ -11,7 +13,7 @@ export const activateAutocomplete = (inputSelector: string): void => {
 function configureAutocomplete(input: HTMLInputElement) {
   let currentFocus: number;
 
-  alert("ADDING addEventListener('input'");
+  alert("ADDING addEventListener('input'...)");
   input.addEventListener('input', function () {
     console.log('input');
     performAutoSuggestion(input);
