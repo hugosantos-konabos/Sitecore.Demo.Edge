@@ -1,6 +1,7 @@
 export const activateAutocomplete = (inputSelector: string): void => {
-  alert(2);
+  alert(inputSelector);
   const input = document.querySelector<HTMLInputElement>(inputSelector);
+  alert(input);
   alert(input.outerHTML);
   if (input !== null) {
     alert(3);
