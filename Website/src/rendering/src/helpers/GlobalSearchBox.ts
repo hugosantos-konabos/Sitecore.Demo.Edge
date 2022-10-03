@@ -12,12 +12,15 @@ function configureAutocomplete(input: HTMLInputElement) {
   let currentFocus: number;
 
   input.addEventListener('input', function () {
+    console.log('input');
     performAutoSuggestion(input);
   });
   input.addEventListener('focusin', function () {
+    console.log('focusin');
     performAutoSuggestion(input);
   });
   input.addEventListener('keydown', function (e) {
+    console.log('keydown');
     const autocompleteListElement = document.getElementById(this.id + 'autocomplete-list');
     if (autocompleteListElement) {
       const autocompleteListChildrenElements = autocompleteListElement.getElementsByTagName('div');
