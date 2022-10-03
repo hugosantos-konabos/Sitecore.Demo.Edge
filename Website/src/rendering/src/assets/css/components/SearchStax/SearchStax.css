@@ -337,7 +337,15 @@
     padding-left: 15px;
     width: 310px;
     position: absolute;
-    width: 224px;
+    width: 310px;
+    border: none;
+}
+
+@media (min-width: 1280px) {
+    .autocomplete-items {
+        top: 410px;
+        width: 284px;
+    }
 }
 
 @media (max-width: 767px) {
