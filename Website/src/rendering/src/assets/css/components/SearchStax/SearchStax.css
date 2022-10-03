@@ -337,14 +337,14 @@
     padding-left: 15px;
     width: 284px;
     position: absolute;
-    width: 310px;
+    width: 252px;
     border: none;
 }
 
 @media (min-width: 1024px) and (max-width: 1280px) {
     .autocomplete-items {
         top: 410px;
-        width: 310px;
+        width: 282px;
     }
 }
 
