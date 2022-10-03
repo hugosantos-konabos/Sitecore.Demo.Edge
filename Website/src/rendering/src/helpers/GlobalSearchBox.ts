@@ -1,10 +1,13 @@
 export const activateAutocomplete = (inputId: string): void => {
+  alert(1);
   const input = document.querySelector<HTMLInputElement>(inputId);
-
+  alert(2);
   if (input !== null) {
+    alert(3);
     configureAutocomplete(input);
-
+    alert(4);
     document.addEventListener('click', function (e: MouseEvent) {
+      alert(5);
       removeAutoCompletes(e.target as Element, input);
     });
   }
