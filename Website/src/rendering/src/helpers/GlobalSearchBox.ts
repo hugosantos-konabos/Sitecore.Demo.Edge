@@ -69,7 +69,7 @@ async function triggerQuerySuggestionCall(input: HTMLInputElement) {
   console.log('after fetch');
   const content = await rawResponse.json();
   console.log(content);
-  const completions = content.suggest.studio_suggestor_en.spo.suggestions;
+  const completions = content?.suggest?.studio_suggestor_en?.spo?.suggestions;
   return completions;
 }
 
