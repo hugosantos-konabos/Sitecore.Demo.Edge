@@ -11,6 +11,7 @@ export const activateAutocomplete = (inputSelector: string): void => {
 function configureAutocomplete(input: HTMLInputElement) {
   let currentFocus: number;
 
+  alert("ADDING addEventListener('input'");
   input.addEventListener('input', function () {
     console.log('input');
     performAutoSuggestion(input);
