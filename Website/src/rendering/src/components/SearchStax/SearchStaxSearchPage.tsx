@@ -36,10 +36,10 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
     props.fields.SolrUsername.value + ':' + props.fields.SolrPassword.value
   ).toString('base64');
 
-  // let language = sitecoreContext.language;
-  // if (language?.length > 2) {
-  //   language = language.substring(0, 2);
-  // }
+  let language = sitecoreContext.language;
+  if (language?.length > 2) {
+    language = language.substring(0, 2);
+  }
 
   let additionalArgs =
     'hl.fragsize=200&fq=_language:"' + sitecoreContext.language + '"&fq=_haslayout_b:true';
@@ -218,7 +218,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
             },
             hideUniqueKey: true,
             searchAdditionalArgs: '${additionalArgs}',
-            language: '${sitecoreContext.language}',
+            language: '${language}',
             defaultQuery: "*"
           },
           searchResults: '#searchResultsSection',
