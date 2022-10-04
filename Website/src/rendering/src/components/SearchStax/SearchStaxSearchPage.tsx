@@ -41,8 +41,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
     language = language.substring(0, 2);
   }
 
-  let additionalArgs =
-    'hl.fragsize=200&fq=_language:"' + sitecoreContext.language + '"&fq=_haslayout_b:true';
+  let additionalArgs = 'hl.fragsize=200&fq=_language:"' + language + '"&fq=_haslayout_b:true';
 
   if (props.fields.SearchModel.value !== undefined && props.fields.SearchModel.value != '') {
     additionalArgs += '&model=' + props.fields.SearchModel.value;
