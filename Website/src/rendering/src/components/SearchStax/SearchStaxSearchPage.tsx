@@ -36,12 +36,12 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
     props.fields.SolrUsername.value + ':' + props.fields.SolrPassword.value
   ).toString('base64');
 
-  let language = sitecoreContext.language;
-  if (language?.length > 2) {
-    language = language.substring(0, 2);
-  }
+  // let language = sitecoreContext.language;
+  // if (language?.length > 2) {
+  //   language = language.substring(0, 2);
+  // }
 
-  let additionalArgs = 'hl.fragsize=200&fq=_language:"' + language + '"&fq=_haslayout_b:true';
+  let additionalArgs = 'hl.fragsize=200&fq=_language:"' + sitecoreContext.language + '"&fq=_haslayout_b:true';
 
   if (props.fields.SearchModel.value !== undefined && props.fields.SearchModel.value != '') {
     additionalArgs += '&model=' + props.fields.SearchModel.value;
@@ -217,7 +217,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
             },
             hideUniqueKey: true,
             searchAdditionalArgs: '${additionalArgs}',
-            language: '${language}',
+            language: '${sitecoreContext.language}',
             defaultQuery: "*"
           },
           searchResults: '#searchResultsSection',
