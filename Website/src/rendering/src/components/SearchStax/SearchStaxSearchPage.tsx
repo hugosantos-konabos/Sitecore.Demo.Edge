@@ -16,6 +16,7 @@ type SearchStaxSearchPageProps = ComponentProps & {
     AnalyticsApiKey: Field<string>;
     SolrUsername: Field<string>;
     SolrPassword: Field<string>;
+    Index: Field<string>;
   };
 };
 
@@ -186,6 +187,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         </div>`}</Script>
 
       <Script id="studioConfig">{`
+        alert('${props.fields.Index.value}');
         const session = getOrSetCookie('searchcookie');
 
         function format_date(value) {
