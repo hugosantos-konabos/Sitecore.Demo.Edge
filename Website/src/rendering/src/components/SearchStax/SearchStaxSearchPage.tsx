@@ -6,16 +6,7 @@ import { SearchStaxIndex } from 'src/types/searchStaxIndex';
 
 type SearchStaxSearchPageProps = ComponentProps & {
   fields: {
-    OverrideIndexCoreName: Field<string>;
     SearchModel: Field<string>;
-    SearchEndpoint: Field<string>;
-    ApiKey: Field<string>;
-    FieldsMapping: Field<string>;
-    SuggesterEndpoint: Field<string>;
-    SearchApiKey: Field<string>;
-    AnalyticsApiKey: Field<string>;
-    SolrUsername: Field<string>;
-    SolrPassword: Field<string>;
     SearchStaxIndex: SearchStaxIndex;
   };
 };
@@ -34,7 +25,9 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
   // const analyticsApiKey = 'lqvvpTEyr3hyr20QxXlGASK8y1to57CpPcbrlpdZ2TI';
 
   const basicToken = new Buffer(
-    props.fields.SolrUsername.value + ':' + props.fields.SolrPassword.value
+    props.fields.SearchStaxIndex.fields.SolrUsername.value +
+      ':' +
+      props.fields.SearchStaxIndex.fields.SolrPassword.value
   ).toString('base64');
 
   let language = sitecoreContext.language;
@@ -207,14 +200,14 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         }
         const studioConfig = {
           "connector": {
-            "url": "${props.fields.SearchEndpoint.value}",
+            "url": "${props.fields.SearchStaxIndex.fields.SearchEndpoint.value}",
             "authentication": "${basicToken}",
-            "apikey": "${props.fields.ApiKey.value}",
+            "apikey": "${props.fields.SearchStaxIndex.fields.ApiKey.value}",
             "session": session,
-            "fields": ${props.fields.FieldsMapping.value},
-            "suggester": "${props.fields.SuggesterEndpoint.value}",
+            "fields": ${props.fields.SearchStaxIndex.fields.FieldsMapping.value},
+            "suggester": "${props.fields.SearchStaxIndex.fields.SuggesterEndpoint.value}",
             "relatedSearches": "",
-            "searchAPIKey":  "${props.fields.SearchApiKey.value}",
+            "searchAPIKey":  "${props.fields.SearchStaxIndex.fields.SearchApiKey.value}",
             "fieldFormatters": {
               date: format_date,
             },
@@ -251,7 +244,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
           js.async = 1;
           fjs.parentNode.insertBefore(js, fjs);
       })(window, document, 'script', '_sf', 'https://static.searchstax.com/studio-js/v3/js/studio-feedback.js');
-      _sf('${props.fields.AnalyticsApiKey.value}');`}</Script>
+      _sf('${props.fields.SearchStaxIndex.fields.AnalyticsApiKey.value}');`}</Script>
     </div>
   );
 };
