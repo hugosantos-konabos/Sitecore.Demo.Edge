@@ -16,7 +16,7 @@ type SearchStaxSearchPageProps = ComponentProps & {
     AnalyticsApiKey: Field<string>;
     SolrUsername: Field<string>;
     SolrPassword: Field<string>;
-    Index: Field<string>;
+    SearchStaxIndex: Field<string>;
   };
 };
 
