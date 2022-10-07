@@ -3,8 +3,6 @@ import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
 export type SearchStaxIndex = {
   name: Field<string>;
   fields: {
-    OverrideIndexCoreName: Field<string>;
-    SearchModel: Field<string>;
     SearchEndpoint: Field<string>;
     ApiKey: Field<string>;
     FieldsMapping: Field<string>;
