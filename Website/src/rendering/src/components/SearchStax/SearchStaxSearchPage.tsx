@@ -8,10 +8,10 @@ type SearchStaxSearchPageProps = ComponentProps & {
   fields: {
     OverrideIndexCoreName: Field<string>;
     SearchModel: Field<string>;
-    SearchEndpointUrl: Field<string>;
+    SearchEndpoint: Field<string>;
     ApiKey: Field<string>;
     FieldsMapping: Field<string>;
-    SuggesterEndpointUrl: Field<string>;
+    SuggesterEndpoint: Field<string>;
     SearchApiKey: Field<string>;
     AnalyticsApiKey: Field<string>;
     SolrUsername: Field<string>;
@@ -207,12 +207,12 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         }
         const studioConfig = {
           "connector": {
-            "url": "${props.fields.SearchEndpointUrl.value}",
+            "url": "${props.fields.SearchEndpoint.value}",
             "authentication": "${basicToken}",
             "apikey": "${props.fields.ApiKey.value}",
             "session": session,
             "fields": ${props.fields.FieldsMapping.value},
-            "suggester": "${props.fields.SuggesterEndpointUrl.value}",
+            "suggester": "${props.fields.SuggesterEndpoint.value}",
             "relatedSearches": "",
             "searchAPIKey":  "${props.fields.SearchApiKey.value}",
             "fieldFormatters": {

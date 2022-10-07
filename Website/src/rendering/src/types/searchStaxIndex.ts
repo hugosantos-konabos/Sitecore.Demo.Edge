@@ -5,10 +5,10 @@ export type SearchStaxIndex = {
   fields: {
     OverrideIndexCoreName: Field<string>;
     SearchModel: Field<string>;
-    SearchEndpointUrl: Field<string>;
+    SearchEndpoint: Field<string>;
     ApiKey: Field<string>;
     FieldsMapping: Field<string>;
-    SuggesterEndpointUrl: Field<string>;
+    SuggesterEndpoint: Field<string>;
     SearchApiKey: Field<string>;
     AnalyticsApiKey: Field<string>;
     SolrUsername: Field<string>;
