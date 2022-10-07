@@ -68,7 +68,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         })();`}</Script>
 
       <div className="app">
-        <div id="test">${props.fields.SearchStaxIndex.fields.SearchEndpointUrl.value}</div>
+        <div id="test">${props.fields.SearchStaxIndex}</div>
         <div className="search-input-wrapper">
           <div className="feedback-wrapper">
             <div id="sf-feedback"></div>
