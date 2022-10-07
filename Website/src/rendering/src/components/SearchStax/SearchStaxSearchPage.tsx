@@ -17,16 +17,18 @@ type SearchStaxSearchPageProps = ComponentProps & {
     SolrUsername: Field<string>;
     SolrPassword: Field<string>;
     SearchStaxIndex: {
-      SearchModelDefinition: Field<string>;
-      OverrideIndexCoreName: Field<string>;
-      SearchEndpointUrl: Field<string>;
-      ApiKey: Field<string>;
-      FieldsMapping: Field<string>;
-      SuggesterEndpointUrl: Field<string>;
-      SearchApiKey: Field<string>;
-      AnalyticsApiKey: Field<string>;
-      SolrUsername: Field<string>;
-      SolrPassword: Field<string>;
+      fields: {
+        SearchModelDefinition: Field<string>;
+        OverrideIndexCoreName: Field<string>;
+        SearchEndpointUrl: Field<string>;
+        ApiKey: Field<string>;
+        FieldsMapping: Field<string>;
+        SuggesterEndpointUrl: Field<string>;
+        SearchApiKey: Field<string>;
+        AnalyticsApiKey: Field<string>;
+        SolrUsername: Field<string>;
+        SolrPassword: Field<string>;
+      };
     };
   };
 };
@@ -78,7 +80,7 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
         })();`}</Script>
 
       <div className="app">
-        <div id="test">${props.fields.SearchStaxIndex.SearchEndpointUrl.value}</div>
+        <div id="test">${props.fields.SearchStaxIndex.fields.SearchEndpointUrl.value}</div>
         <div className="search-input-wrapper">
           <div className="feedback-wrapper">
             <div id="sf-feedback"></div>
