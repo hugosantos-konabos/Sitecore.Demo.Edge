@@ -202,10 +202,10 @@ const SearchPage = (props: SearchStaxSearchPageProps): JSX.Element => {
           "connector": {
             "url": "${props.fields.SearchStaxIndex.fields.SearchEndpoint.value}",
             "authentication": "${basicToken}",
-            "apikey": "${props.fields.SearchStaxIndex.fields.ApiKey.value}",
+            "apikey": "${props.fields.SearchStaxIndex.fields.AnalyticsApiKey.value}",
             "session": session,
             "fields": ${props.fields.SearchStaxIndex.fields.FieldsMapping.value},
-            "suggester": "${props.fields.SearchStaxIndex.fields.SuggesterEndpoint.value}",
+            "suggester": "${props.fields.SearchStaxIndex.fields.SuggestEndpoint.value}",
             "relatedSearches": "",
             "searchAPIKey":  "${props.fields.SearchStaxIndex.fields.SearchApiKey.value}",
             "fieldFormatters": {
