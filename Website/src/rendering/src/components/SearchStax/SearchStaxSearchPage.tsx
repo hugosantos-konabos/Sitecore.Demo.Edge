@@ -2,6 +2,7 @@ import { Field } from '@sitecore-jss/sitecore-jss-nextjs';
 import Script from 'next/script';
 import { useSitecoreContext } from '@sitecore-jss/sitecore-jss-nextjs';
 import { SitecoreContextValue, ComponentProps } from 'lib/component-props';
+import { SearchStaxIndex } from 'src/types/searchStaxIndex';
 
 type SearchStaxSearchPageProps = ComponentProps & {
   fields: {
@@ -16,20 +17,7 @@ type SearchStaxSearchPageProps = ComponentProps & {
     AnalyticsApiKey: Field<string>;
     SolrUsername: Field<string>;
     SolrPassword: Field<string>;
-    SearchStaxIndex: {
-      fields: {
-        SearchModelDefinition: Field<string>;
-        OverrideIndexCoreName: Field<string>;
-        SearchEndpointUrl: Field<string>;
-        ApiKey: Field<string>;
-        FieldsMapping: Field<string>;
-        SuggesterEndpointUrl: Field<string>;
-        SearchApiKey: Field<string>;
-        AnalyticsApiKey: Field<string>;
-        SolrUsername: Field<string>;
-        SolrPassword: Field<string>;
-      };
-    };
+    SearchStaxIndex: SearchStaxIndex;
   };
 };
 
