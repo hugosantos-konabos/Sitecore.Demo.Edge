@@ -6,7 +6,6 @@ import { SearchStaxIndex } from 'src/types/searchStaxIndex';
 
 type SearchStaxSearchPageProps = ComponentProps & {
   fields: {
-    SearchModelDefinition: Field<string>;
     OverrideIndexCoreName: Field<string>;
     SearchModel: Field<string>;
     SearchEndpointUrl: Field<string>;
