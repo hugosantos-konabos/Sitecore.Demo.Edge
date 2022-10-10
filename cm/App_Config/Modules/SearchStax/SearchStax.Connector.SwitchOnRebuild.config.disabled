@@ -3,8 +3,8 @@
     <sitecore>
         <contentSearch>
             <configuration type="Sitecore.ContentSearch.ContentSearchConfiguration, Sitecore.ContentSearch">
-                <indexes hint="list:AddIndex">
-                    <index id="sitecore1022-820">
+                <indexes hint="list:AddIndex">                    
+                    <index id="$(env:SearchStax_IndexCoreName)">
                         <patch:attribute name="type" value="SearchStax.Feature.Connector.Provider.SwitchOnRebuildSearchStaxCloudSearchIndex, SearchStax.Feature.Connector" />
                         <param desc="core">
                             <patch:delete />
@@ -16,7 +16,7 @@
                         <param patch:after="*[@desc='mainalias']" desc="rebuildalias">$(id)RebuildAlias</param>
                         <param patch:after="*[@desc='rebuildalias']" desc="collection">$(id)</param>
                         <param patch:after="*[@desc='collection']" desc="rebuildcollection">$(id)_rebuild</param>
-                    </index>
+                    </index>                   
                 </indexes>
             </configuration>
         </contentSearch>
